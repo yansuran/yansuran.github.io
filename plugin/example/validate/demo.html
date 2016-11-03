@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>各种验证</title>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+    <link rel="stylesheet" type="text/css" href="css/base.css"/>
+       <style>
+            /* validate-item */
+            .validate-item{ width:800px; margin:10px auto; padding:10px; border-radius:10px; position:relative; background:#fff;}
+            .validate-item ul{}
+            .validate-item ul li{ width:50%; float:left; height:28px; line-height:28px; margin-bottom:10px;}
+            .validate-item ul li label{ width:100px; text-align:right; display:block; float:left; margin-right:10px; height:28px;}
+            .validate-item ul li input.v-text{ float:left; padding:5px; height:16px; line-height:16px; border:solid 1px #bbb; background:#fff; color:#666;}
+            .validate-item ul li input.w1{ width:300px;}
+            .validate-item ul li input.w2{width:250px;}
+            .validate-item ul li input.w3{width:200px;}
+            .validate-item ul li input.w4{width:150px;}
+            .validate-item ul li input.w5{width:100px;}
+            .validate-item ul li input.error{background:#FCF5D9; border:1px solid #D80000;}
+            .validate-item ul li input:focus{border:solid 1px #59a5d9;box-shadow:0px 0px 3px #59a5d9; background:#fff;}
+            .validate-submit{ height:28px; line-height:28px; text-align: center; padding:5px 0px; clear:both;}
+            .validate-submit input{ padding:0px 20px; cursor:pointer; margin:0px 10px; border:solid 1px #ddd; height:28px; background:#fff; font-weight:bold; color:#777;}
+            .validate-submit input:hover{ background:#59A5D9; color:#fff; border:solid 1px #59A5D9;}
+       </style>
+   
+  </head>
+
+  <body>
+
+  <div class="validate-item">
+       <form action="" method="post" id="validate-form">
+            <ul>
+                 <li>
+                      <label>非空</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="required"/>
+                 </li>
+                 <li>
+                      <label>仅ACSII字符</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="ACSII"/>
+                 </li>
+                 <li>
+                      <label>纯数字</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="number"/>
+                 </li>
+                 <li>
+                      <label>正负整数</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="integer"/>
+                 </li>
+                 <li>
+                      <label>负整数</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="negativeInteger"/>
+                 </li>
+                 <li>
+                      <label>正整数</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="positiveInteger"/>
+                 </li>
+                 <li>
+                      <label>正负浮点数</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="float"/>
+                 </li>
+                 <li>
+                      <label>负浮点数</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="negativeFloat"/>
+                 </li>
+                 <li>
+                      <label>正浮点数</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="positiveFloat"/>
+                 </li>
+                 <li>
+                      <label>大小写字母</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="alphabet"/>
+                 </li>
+                 <li>
+                      <label>大写字母</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="LETTER"/>
+                 </li>
+                 <li>
+                      <label>小写字母</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="letter"/>
+                 </li>
+                 <li>
+                      <label>仅中文</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="chinese"/>
+                 </li>
+                 <li>
+                      <label>16进制色值</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="color"/>
+                 </li>
+                 <li>
+                      <label>日期格式</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="date"/>
+                 </li>
+                 <li>
+                      <label title="用户名可由大小写字母、数字、下划线、中横线和中文组成">用户名</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="username"/>
+                 </li>
+                 <li>
+                      <label title="数字、大小写字母、下划线和中横线组成">6-18位密码</label>
+                      <input type="password" name="" id="" class="v-text w2" valtype="password"/>
+                 </li>
+                 <li>
+                      <label title="真实姓名可由中文英文和数字组成">真实姓名</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="trueName"/>
+                 </li>
+                 <li>
+                      <label>手机号码</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="tellphone|email" valNeedCache="true"/>
+                 </li>
+
+                 <li>
+                      <label>Email</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="email"/>
+                 </li>
+                 <li>
+                      <label>QQ</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="QQ"/>
+                 </li>
+                 <li>
+                      <label>身份证</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="IDcard"/>
+                 </li>
+                 <li>
+                      <label>IP地址</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="IP"/>
+                 </li>
+                 <li>
+                      <label>邮政编码</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="postCode"/>
+                 </li>
+                 <li>
+                      <label>判断图片</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="img"/>
+                 </li>
+                 <li>
+                      <label>判断压缩文件</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="file"/>
+                 </li>
+                 <li>
+                      <label>网址</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="site"/>
+                 </li>
+                 <li>
+                      <label>FTP地址</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="ftp"/>
+                 </li>
+                 <li>
+                      <label>护照号码</label>
+                      <input type="text" name="" id="" class="v-text w2" valtype="passport"/>
+                 </li>
+
+            </ul>
+            <div class="validate-submit">
+                 <input type="reset" id="validate-reset" value="重 置" />
+                 <input type="button"  id="validate-button" value="提 交" />
+            </div>
+       </form>
+  </div>
+
+
+  </body>
+<script src="../../res/js/jquery-1.11.3.min.js"></script>
+ <script type="text/javascript"  src="validate.js" ></script>
+ <script>
+      ;(function(){
+           $('#validate-button').bind('click',function(){
+                var flag=true;
+                $('.validate-item input.v-text').each(function(){
+                     var s=$(this).Bvalidate({
+                         // positiveFloatReg:/^([1-9]\d+|\d)(\.\d{1,2})?$/,
+                          success:function(o){
+                               o.removeClass('error').addClass('true');
+                          },
+                          error:function(o,text){
+                               o.removeClass('true').addClass('error');
+                          }
+                     });
+                     flag=flag&&s;
+                });
+                if(flag){
+                     //验证通过执行
+
+                };
+           });
+
+           $('#validate-reset').unbind('click').bind('click',function(){
+                $('.validate-item input').removeClass('error');
+           });
+      })();
+ </script>
+</html>

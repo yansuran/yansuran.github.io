@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>test </title>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+       <link rel="stylesheet" type="text/css" href="../../res/css/base.css"/>
+   
+  </head>
+
+   <style>
+	 .ma{ width:400px; height:1000px; line-height:1000px; border:1px solid #ccc; text-align:center; font-family:'courier New'; font-size:70px;}
+	 .fixedModel{ position:fixed; top:10%; right:10%;}
+	 .fixedModel a{ display:block; width:40px; height:40px; margin-top:-1px; background-color:#ccc; border:1px solid #666; border-radius:3px;}
+	 .fixedModel a.current{ background-color:red;}
+   </style>  
+
+
+  <body  style="margin: 50px;">
+
+
+       <div class="model">
+            <div class="ma" id="mA1">A</div>
+            <div class="ma" id="mA2">B</div>
+            <div class="ma" id="mA3">C</div>
+       </div>
+       
+       <div class="fixedModel">
+           <a class="current" href="#mA1"></a>
+           <a href="#mA2"></a>
+           <a href="#mA3"></a>
+       </div>
+       
+
+  </body>
+  <script src="../../res/js/jquery-1.11.3.min.js"></script>
+  <script>
+		;(function($){
+			 $(window).scroll(function(){
+				   var top = $(document).scrollTop(),
+				       items = $(".model").find(".ma"), 
+				       fixedMenu = $(".fixedModel");
+				   var curId;  	 
+			       
+				   items.each(function(){
+					  var itemsTop = $(this).offset().top;      
+						if(top > itemsTop-100){
+							curId = "#" + $(this).attr("id");
+						}else{
+							return false;
+						}					   
+				   });	
+				   
+					var curLink = fixedMenu.find(".current");
+					if( curId && curLink.attr("href") != curId ){
+						curLink.removeClass("current");
+						fixedMenu.find( "[href=" + curId + "]" ).addClass("current");
+					}
+			 });
+		 })(jQuery);
+  </script>
+  
+</html>

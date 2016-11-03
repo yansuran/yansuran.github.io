@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<title>拖拽插件</title>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit" />
+<link rel="stylesheet" type="text/css" href="../../res/css/base.css"/>
+     <style>
+          .box{ width: 500px; height: 100px; background: green;}
+          .s{ width: 50px; height: 50px; background: #2b4853 ; margin: 0 auto;}
+     </style>
+</head>
+
+<body>
+
+     <div class="box">
+          <div class="s"></div>
+     </div>
+
+
+</body>
+<script src="../../res/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="drag.js"></script>
+<script>
+;(function(){
+     $('.box').dragDialogBox({
+          dragClassName: 's' ,
+          dragContent:'box'
+     })
+
+})(jQuery);
+
+
+</script>
+
+
+
+</html>

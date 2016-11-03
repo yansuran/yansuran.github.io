@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Demo Code - 环形进度图生成</title>
+</head>
+<body>
+   <canvas id="mycanvas"></canvas>
+</body>
+
+
+<script>
+
+    var  width_canvas = 122,
+         height_canvas =122*101;
+
+    window.onload = function(){
+        var canvas = document.getElementById("mycanvas"),
+            context =  canvas.getContext("2d");
+
+        canvas.width = width_canvas;
+        canvas.height = height_canvas;
+        for(var i=0 ; i<=100 ; i++){
+            context.beginPath();
+            context.arc(61 ,(61+122*i) , 60 ,0 , 2*Math.PI);
+            context.lineWidth = 1;
+            context.strokeStyle = "#ccc";
+            context.stroke();
+
+            context.beginPath();
+            context.arc(61 ,(61+122*i)  , 60  ,1.5*Math.PI , (1.5+0.02*i)*Math.PI );
+            context.lineWidth = 1;
+            context.strokeStyle = "#1da563";
+            context.stroke();
+
+            context.font="14px Tohama";
+            context.fillText( i+"%" ,61, (61+122*i) ); // 圆心百分数
+
+            context.textAlign='center';//文本水平对齐方式
+            context.textBaseline='middle';//文本垂直方向，基线位置
+        };
+
+    };
+
+</script>
+
+</html>

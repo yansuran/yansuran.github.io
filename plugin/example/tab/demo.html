@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>选项卡组件</title>
+<link href="css/base.css" rel="stylesheet">
+<style>
+    h3{ margin: 30px 0; }
+    h4{ margin-top: 20px;line-height: 20px; }
+    .tab{ height: 30px;border: 1px solid #e1e1e1; }
+    .tab_item{ float:left;width: 110px;height: 30px;border-right: 1px solid #e1e1e1;line-height: 30px;text-align: center;font-size: 14px;}
+    .tab_item:hover{ color:#e60012; }
+    .tab_item.cur{ background: #e60012;color: #fff; }
+    .tab_content{ margin-top: -1px; }
+    .tab_con{ display: none; min-height: 200px;padding: 10px;border:1px solid #eaeaea;background: #f7f7f7;line-height: 20px;font-size: 14px; }
+</style>
+</head>
+<body>
+    <div class="wrap">
+        <h3>选项卡组件</h3>
+        <h4>"hover" 触发tab</h4>
+        <div class="tab_box tab_box1">
+            <div class="tab clearfix">
+                <a href="javascript:;" class="tab_item cur">tab1</a>
+                <a href="javascript:;" class="tab_item">tab2</a>
+                <a href="javascript:;" class="tab_item">tab3</a>
+                <a href="javascript:;" class="tab_item">tab4</a>
+            </div>
+            <div class="tab_content">
+                <div class="tab_con">tab content1</div>
+                <div class="tab_con">tab content2</div>
+                <div class="tab_con">tab content3</div>
+                <div class="tab_con">tab content4</div>
+            </div>
+        </div>
+        <h4>"click" 触发tab</h4>
+        <div class="tab_box tab_box2">
+            <div class="tab clearfix">
+                <a href="javascript:;" class="tab_item">tab1</a>
+                <a href="javascript:;" class="tab_item cur">tab2</a>
+                <a href="javascript:;" class="tab_item">tab3</a>
+                <a href="javascript:;" class="tab_item">tab4</a>
+            </div>
+            <div class="tab_content">
+                <div class="tab_con">tab content1</div>
+                <div class="tab_con">tab content2</div>
+                <div class="tab_con">tab content3</div>
+                <div class="tab_con">tab content4</div>
+            </div>
+        </div>
+    </div>
+<script src="../../res/js/jquery-1.11.3.min.js"></script>
+<script>
+    ;(function(){
+        $.fn.extend({
+            tabPlugin:function(options){
+                var defaults ={
+                    initDom:'.tab_box',
+                    tabTrigger: 'click', // or'hover'
+                    callBack:function(){} //callback
+                };
+                
+                var options =$.extend(true ,defaults , options);
+
+                this.each(function() {
+                    var _this = $(this),
+                        _tab = _this.find('.tab_item'),
+                        _tabCur = _this.find('.tab_item.cur'),
+                        _tabCon = _this.find('.tab_con'),
+                        _curIndex = _tabCur.index();
+
+                    var S = {
+                        init:function(){
+                            _tabCon.eq(_curIndex).show().siblings('.tab_con').hide();
+                            if(options.tabTrigger == 'click'){
+                                _tab.unbind().bind('click',S.tab);
+                            }else if(options.tabTrigger == 'hover'){
+                                _tab.unbind().bind('mouseover',S.tab);
+                            }
+                        },
+                        tab:function(){
+                            if($(this).hasClass('cur')){
+                                return false;
+                            }
+                            var index = $(this).index();
+                            $(this).addClass('cur').siblings('.tab_item').removeClass('cur');
+                            _tabCon.eq(index).show().siblings('.tab_con').hide();
+                            options.callBack();
+                        }
+                    }
+                    S.init();
+                });
+                return this;
+            }
+        });
+    })(jQuery)
+    $('.tab_box1').tabPlugin({ tabTrigger:'hover' });
+    $('.tab_box2').tabPlugin({ tabTrigger:'click' });
+</script>  
+</body>
+</html>

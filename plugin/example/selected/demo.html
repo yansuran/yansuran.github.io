@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>多级菜单选择 -插件 </title>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+       <link rel="stylesheet" type="text/css" href="css/base.css"/>
+       <link rel="stylesheet" type="text/css" href="css/main.css"/>
+
+
+  </head>
+
+  <body style="height: 1000px;">
+  <div class="ui-public-container">
+       <div style=" position:absolute; left:20px; top:32px; font-size:18px;font-family: 'microsoft yahei '; color:#f00;">多级菜单选择示例<p style="font-size:14px; padding:0px 5px;color:#000; ">开发环境中才能生效(ajax)</p></div>
+       <ul class="ui-create-main">
+            <li>
+                 <label>只展示具体子类：</label>
+                 <div class="ui-create-box ui-now-city-select-container">
+                      <input
+                           type="text"
+                           name=""
+                           class="w5 ui-valid-text ui-need-valid ui-name-select-container"
+                           placeholder="点击选择城市，只展示出具体城市名，例如武汉市"
+                           readonly="readonly"
+                           valtype="required"
+                      >
+                      <input type="hidden" name="" class="ui-code-select-container">
+                 </div>
+                 <div class="clear"></div>
+            </li>
+            <li>
+                 <label>父类子类都展示：</label>
+                 <div class="ui-create-box ui-trade-select-container">
+                      <input type="text" name="" class="w3 ui-valid-text ui-need-valid ui-name-select-container" placeholder="选择具体城市，城市前面对应的省份也展示出，例如湖北省武汉市黄陂区" readonly="readonly" valtype="required">
+                      <input type="hidden" name="" class="ui-code-select-container">
+                 </div>
+                 <div class="clear"></div>
+            </li>
+            <li>
+                 <label>限制所选择个数：</label>
+                 <div class="ui-create-box ui-career-select-container">
+                      <input type="text" name="" class="w4 ui-valid-text ui-need-valid ui-name-select-container" placeholder="点击选择职位，最多可以选择五个" readonly="readonly" valtype="required">
+                      <input type="hidden" name="" class="ui-code-select-container">
+                 </div>
+                 <div class="clear"></div>
+            </li>
+       </ul>
+  </div>
+
+     
+  </body>
+<script src="../../res/js/jquery-1.11.3.min.js"></script>
+  <script src="js/selected.js"></script>
+<script>
+     var PATH ='https://yansuran.github.io/plugin/example/selected/';
+     (function(){//
+
+          $('.ui-now-city-select-container').BSelect({//只展示出具体菜单子类
+               url:PATH+'js/data/career.json',
+               addAllSelect:false,
+
+               callback:function(o){
+                    o.removeClass('error').addClass('true');
+               }
+          });
+
+          $('.ui-trade-select-container').BSelect({//父类子类都展示
+               url:PATH+'js/data/career.json',
+               addAllSelect:true,
+
+               callback:function(b){
+                    b.removeClass('error').addClass('true');
+                    //$('.ui-career-select-container .ui-name-select-container').val('').removeClass('error').removeClass('true');
+                    //$('.ui-career-select-container .ui-code-select-container').val('');
+               }
+          });
+
+          $('.ui-career-select-container').BSelect({//限制选择个数
+               url:PATH+'js/data/career.json',
+               param:$('.ui-trade-select-container .ui-code-select-container').val(),
+               label:'已选职位',
+               maxSelectNumber:5,
+
+               callback:function(o){
+                    o.removeClass('error').addClass('true');
+               }
+          });
+
+     })();
+
+</script>
+
+
+  
+</html>

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+     <meta charset="UTF-8">
+     <title>YJs_Plugin - Js插件库</title>
+     <link rel="stylesheet" type="text/css" href="res/css/yJs_style.css">
+     <link rel="stylesheet" type="text/css" href="res/css/rainbow.css">
+</head>
+<body>
+  <div class="yJs_logo">
+       <img src="res/image/YJS_logo.png" width="150" height="25"/>
+       <span>插件库</span>
+  </div>
+  <div class="yJs_banner">
+       <iframe class="baniframe"  src="https://yansuran.github.io/plugin/example/canvas.html"></iframe>
+       <!--<p>Make The Development Quicker And More Convenient</p>-->
+       <p><img src="res/image/text.png" width="550"/> </p>
+  </div>
+
+  <div class="yJs_menu">
+      <ul class="ym_item clearfix">
+           <li data-tip="plugin">
+               <a href="#plugins"><i class="iconfont">&#xe601;</i>常用插件<i class="iconfont">&#xe605;</i></a>
+           </li>
+           <li data-tip="code">
+               <a href="#codes"><i class="iconfont">&#xe604;</i>实用代码<i class="iconfont">&#xe605;</i></a>
+           </li>
+           <li>
+               <a href="javascript:;"><i class="iconfont">&#xe607;</i>敬请期待</a>
+           </li>
+           <li>
+                <a href="javascript:;"><i class="iconfont">&#xe607;</i>敬请期待</a>
+           </li>
+           <li>
+                <a href="docx"><i class="iconfont">&#xe617;</i>相关规范文档</a>
+           </li>
+           <li>
+               <a href="cubic-bezier"><i class="iconfont">&#xe640;</i>贝塞尔曲线设计</a>
+           </li>
+           <li>
+                <a href="javascript:;"><i  class="iconfont">&#xe602;</i>其它<i class="iconfont">&#xe605;</i></a>
+           </li>
+      </ul>
+
+      <ul class="ym_list">
+           <li data-tip="plugin">
+                <a href="#calendar"><span><i class="iconfont">&#xe606;</i>日历</span></a>
+                <a href="#carousel"><span><i class="iconfont">&#xe609;</i>轮播</span></a>
+                <a href="#dialog"><span><i class="iconfont">&#xe60b;</i>弹窗</span></a>
+                <a href="#dropList"><span><i class="iconfont">&#xe608;</i>模拟下拉</span></a>
+                <a href="#validate"><span><i class="iconfont">&#xe60c;</i>表单验证</span></a>
+                <a href="#imageLoad"><span><i class="iconfont">&#xe60f;</i>图片加载进度</span></a>
+                <a href="#selected"><span><i class="iconfont">&#xe616;</i>多级类目选择</span></a>
+                <!-- <a href="javascript:;"><span><i class="iconfont">&#xe60a;</i>拖拽</span></a>-->
+                <a href="#tab"><span><i class="iconfont">&#xe60e;</i>选项卡</span></a>
+           </li>
+           <li data-tip="code">
+                <a href="#canvas"><span><i class="iconfont">&#xe612;</i>Canvas环形进度图</span></a>
+                <a href="#delayhide"><span><i class="iconfont">&#xe612;</i>延时隐藏下拉</span></a>
+                <a href="#pagenav"><span><i class="iconfont">&#xe612;</i>页面类目导航</span></a>
+                <a href="#browertip"><span><i class="iconfont">&#xe612;</i>检测终端设备</span></a>
+                <a href="#stopmouse"><span><i class="iconfont">&#xe612;</i>阻止鼠标滑轮事件冒泡</span></a>
+                <a href=""><span><i class="iconfont">&#xe612;</i>实用代码</span></a>
+                <a href=""><span><i class="iconfont">&#xe612;</i>实用代码</span></a>
+                <a href=""><span><i class="iconfont">&#xe612;</i>实用代码</span></a>
+           </li>
+      </ul>
+
+  </div>
+  
+  <div class="yJs_main">
+       <div class="module">
+           <h4>常用插件</h4>
+            <div class="m_item" id="calendar">
+                 <div class="mi_tit"><i class="iconfont">&#xe606;</i>日历</div>
+                 <div class="mi_view">
+                      <div class="m_view_header"><p>效果图</p></div>
+                      <div class="m_view_body">
+                           <img src="example/calendar/shoot.jpg" width="500" />
+                      </div>
+                 </div>
+                 <div class="mi_btn">
+                      <a target="_blank" href="example/calendar/demo.html"><i class="iconfont">&#xe614;</i>效果预览</a>
+                      
+                 </div>
+                 <div class="m_readme">
+                      <div class="mr_tit">使用说明</div>
+
+                      <div class="code_area clearfix">
+                    <pre><code data-language="html" >
+     <div class="selecDatePeriod">
+          <div class="timeSelectBar clearfix">
+               <input class="tselect-same startInput date12"  type="text" readonly='readonly' value="2015-03-02" />
+               <input class="lineInput" type="text" readonly='readonly' value="至" />
+               <input class="tselect-same endInput date12" type="text" readonly='readonly' value="2015-03-09" />
+          </div>
+          <div class="none timeHideModel">
+               <div class="dateTabBtn dateTabBtn1 clearfix" data-trigger="spcalendar">
+                    <a href="javascript:;" data-mode="month">按月</a>
+                    <a href="javascript:;" data-mode="week">按周</a>
+                    <a class="current" href="javascript:;" data-mode="date">按日</a>
+               </div>
+               <div class="detailDateWarp">
+                    <div class="detailDateCont"></div>
+                    <a class="sureClose" href="javascript:;">确定</a>
+               </div>
+          </div>
+     </div><!-- //selecDatePeriod ending -->
+                    </code></pre>
+
+                    <pre><code data-language="javascript">
+     // 引入 datepickerCore.js  datepickerUi.js
+     var obj = $(".date12").spcalendar({daypanel: 2});
+     $(".dateTabBtn1 a").bind('click', function () { //调用
+          $(this).addClass('current')
+                 .siblings('a').removeClass('current');
+          obj.options.defaultType = $(this).attr('data-mode');
+          obj.calendarShow();
+     });
+                    </code></pre>
+                      </div>
+
+                 </div>
+
+            </div> <!-- plugin ending -->
+
+            <div class="m_item" id="carousel">
+                 <div class="mi_tit"><i class="iconfont">&#xe609;</i>轮播</div>
+                 <div class="mi_view">
+                      <div class="m_view_header"><p>效果图</p></div>
+                      <div class="m_view_body">
+                           <img src="example/carousel/shoot_1.jpg" width="800" />
+                      </div>
+                 </div>
+                 <div class="mi_btn">
+                      <a target="_blank" href="example/carousel/demo.html"><i class="iconfont">&#xe614;</i>效果预览</a>
+                      </div>
+                 <div class="m_readme">
+                      <div class="mr_tit">使用说明</div>
+
+                      <div class="code_area clearfix">
+                    <pre><code data-language="html" >
+     <div class="slider-Model">
+          <div class="ui-banner"
+               id="J_index_banner"
+               data-links="#|#|#|#"
+               data-pic="images/banner01.jpg|images/banner02.jpg|images/banner01.jpg|images/banner02.jpg"
+           >
+               <!-- //   date-links对应link  data-pic对应src //-->
+               <div class="ui-banner-focus"></div>
+          </div> <!-- // ui-banner ending-->
+     </div> <!-- // slider-Model ending-->
+                    </code></pre>
+
+                    <pre><code data-language="javascript">
+     $('.ui-banner').BsliderBox({
+          time:4000, //轮播间隔ms
+          auto:true //自动
+     });
+                    </code></pre>
+                      </div>
+
+                 </div>
+
+                 <div class="mi_view">
+                      <div class="m_view_header"><p>效果图</p></div>
+                      <div class="m_view_body">
+                           <img src="example/carousel/shoot_2.jpg" width="840" />
+                      </div>
+                 </div>
+                 <div class="mi_btn">
+                      <a target="_blank" href="example/carousel/demo_2.html"><i class="iconfont">&#xe614;</i>效果预览</a>
+                     </div>
+                 <div class="m_readme">
+                      <div class="mr_tit">使用说明</div>
+
+                      <div class="code_area clearfix">
+                    <pre><code data-language="html" >
+     <div class="select-date-model select-date-A">
+          <a class="Arrowbtn left-Arrowbtn" href="javascript:;"></a>
+          <a class="Arrowbtn right-Arrowbtn" href="javascript:;"></a>
+          <div class="sel-scroll-box">
+               <ul class="s-items-ul clearfix">
+                    <li class="current"><a href="javascript:;">2015-07-16</a></li>
+                    <li><a href="javascript:;">2015-07-17</a></li>
+                    <li><a href="javascript:;">2015-07-18</a></li>
+                     ...
+               </ul>
+          </div>
+     </div><!-- //select-date-model ending -->
+                    </code></pre>
+
+                    <pre><code data-language="javascript">
+     $(".select-date-A").scrollPlugin({
+          showItem:8, //展示的个数
+          speed:200, //滚动速度
+          callBack:function(){} //回调
+     });
+                    </code></pre>
+                      </div>
+
+                 </div>
+
+            </div> <!-- plugin ending -->
+
+            <div class="m_item" id="dialog">
+                 <div class="mi_tit"><i class="iconfont">&#xe60b;</i>弹窗</div>
+                 <div class="mi_view">
+                      <div class="m_view_header"><p>效果图</p></div>
+                      <div class="m_view_body">
+                           <img src="example/dialog/shoot.jpg" width="360" />
+                      </div>
+                 </div>
+                 <div class="mi_btn">
+                      <a target="_blank" href="example/dialog/demo.html"><i class="iconfont">&#xe614;</i>效果预览</a>
+                     </div>
+                 <div class="m_readme">
+                      <div class="mr_tit">使用说明</div>
+
+                      <div class="code_area clearfix">
+                    <pre><code data-language="html" >
+     <input class="dialog-btn" type="button" value="弹窗按钮" />
+     <div class="pop-common-dialog pop-key-notice">
+          <div class="pop-keytips-relbox">
+               <a class="pop_close dialog-main-close" href="javascript:;"></a>
+               <div class="pop-key-notice-txt">
+                    ...
+               </div>
+               <div class="full-opacity-bg"></div>
+          </div>
+      </div><!-- //pop-common-dialog ending -->
+                    </code></pre>
+
+     <pre><code data-language="javascript">
+          $("dialog-btn").click(function(){
+               $(this).PopupDialog({ //调用
+                    popupClass:'.pop-key-notice', //弹窗ClassName
+                    maskLayer:true, //是否遮罩
+                    delayClose:2, //自动关闭时间
+                    callback:function(){
+                         alert('自动关闭后的回调函数执行！')
+                    }
+               });
+          });
+     </code></pre>
+                      </div>
+
+                 </div>
+
+            </div> <!-- plugin ending -->
+           <div class="m_item" id="dropList">
+                <div class="mi_tit"><i class="iconfont">&#xe608;</i>模拟下拉</div>
+                <div class="mi_view">
+                     <div class="m_view_header"><p>效果图</p></div>
+                     <div class="m_view_body">
+                          <img src="example/dropList/shoot.jpg" width="290" />
+                     </div>
+                </div>
+                <div class="mi_btn">
+                     <a target="_blank" href="example/dropList/demo.html"><i class="iconfont">&#xe614;</i>效果预览</a>
+                    </div>
+                <div class="m_readme">
+                     <div class="mr_tit">使用说明</div>
+
+                     <div class="code_area clearfix">
+                    <pre><code data-language="html" >
+     <div class="likeDrop likeDrop-A">
+          <div class="d-select-head">最近30天</div>
+          <div class="d-select-option">
+               <ul>
+                    <li><a href="javascript:;">最近7天</a></li>
+                    <li class="current"><a href="javascript:;">最近30天</a></li>
+                    <li><a href="javascript:;">最近17天</a></li>
+                    <li><a href="javascript:;">最近11天</a></li>
+               </ul>
+          </div>
+          <input class="d-select-input" type="hidden" name="" value="最近30天">
+     </div><!-- //likeDrop ending -->
+                    </code></pre>
+
+                    <pre><code data-language="javascript">
+     $(".likeDrop-A").dropPlugin({
+          initDom :"likeDrop" ,
+          callBack:function(){} //callback
+     });
+                    </code></pre>
+                     </div>
+
+                </div>
+
+           </div> <!-- plugin ending -->
+           <div class="m_item" id="validate">
+                <div class="mi_tit"><i class="iconfont">&#xe60c;</i>表单验证</div>
+                <div class="mi_view">
+                     <div class="m_view_header"><p>效果图</p></div>
+                     <div class="m_view_body">
+                          <img src="example/validate/shoot.jpg" width="700" />
+                     </div>
+                </div>
+                <div class="mi_btn">
+                     <a target="_blank" href="example/validate/demo.html"><i class="iconfont">&#xe614;</i>效果预览</a>
+                    </div>
+                <div class="m_readme">
+                     <div class="mr_tit">使用说明</div>
+
+                     <div class="code_area clearfix">
+                    <pre><code data-language="html" >
+     <ul>
+        <li>
+             <label>Email</label><input type="text" name=""  class="v-text" valtype="email"/>
+        </li>
+        <li>
+             <label>身份证</label><input type="text" name=""  class="v-text" valtype="IDcard"/>
+        </li>
+        <li>
+             <label>IP地址</label> <input type="text" name=""  class="v-text" valtype="IP"/>
+        </li>
+        ...
+     </ul><!-- //ul ending *  valtype="" 配置详见validate -->
+                    </code></pre>
+
+                    <pre><code data-language="javascript">
+     $('.validate-item input.v-text').each(function(){
+          var s=$(this).Bvalidate({
+               // positiveFloatReg:/^([1-9]\d+|\d)(\.\d{1,2})?$/,
+               success:function(o){ // callback 验证无误
+                 o.removeClass('error').addClass('true');
+               },
+               error:function(o,text){  // callback 验证有误
+                 o.removeClass('true').addClass('error');
+               }
+          });
+     });
+                    </code></pre>
+                     </div>
+
+                </div>
+
+           </div> <!-- plugin ending -->
+           <div class="m_item" id="imageLoad">
+                <div class="mi_tit"><i class="iconfont">&#xe60f;</i>图片加载进度</div>
+                <div class="mi_view">
+                     <div class="m_view_header"><p>效果图</p></div>
+                     <div class="m_view_body">
+                          <img src="example/imageLoad/shoot.jpg" width="800" />
+                     </div>
+                </div>
+                <div class="mi_btn">
+                     <a target="_blank" href="example/imageLoad/demo.html"><i class="iconfont">&#xe614;</i>效果预览</a>
+                    </div>
+                <div class="m_readme">
+                     <div class="mr_tit">使用说明</div>
+
+                     <div class="code_area clearfix">
+                    <pre><code data-language="javascript">
+     $.loadImage({
+          pic:['1.jpg','2.png','3.png','4.png','5.jpg','6.jpg','7.jpg','8.png','9.jpg','10.jpg'], // Array 图片资源
+          time:200, // 延时加载 ms
+          onProgress:function(index,length){ // callback 加载进度
+               $(".information").html(
+                    '加载进度:'+
+                    Math.min(100,Math.ceil(index*100/length))+'%'
+               );
+          },
+          onComplete:function(){ // callback 加载完成
+               $(".complete").html(
+                    '全部加载完成,所有资源：'+
+                    this.toString()
+               );
+          }
+     })
+                    </code></pre>
+                     </div>
+
+                </div>
+
+           </div> <!-- plugin ending -->
+           <div class="m_item" id="selected">
+                <div class="mi_tit"><i class="iconfont">&#xe616;</i>多级类目选择</div>
+                <div class="mi_view">
+                     <div class="m_view_header"><p>效果图</p></div>
+                     <div class="m_view_body">
+                          <img src="example/selected/shoot.jpg" width="760" />
+                     </div>
+                </div>
+                <div class="mi_btn">
+                     <a target="_blank" href="example/selected/demo.html"><i class="iconfont">&#xe614;</i>效果预览</a>
+                     </div>
+                <div class="m_readme">
+                     <div class="mr_tit">使用说明</div>
+
+                     <div class="code_area clearfix">
+                    <pre><code data-language="html">
+     <div class="ui-create-box ui-select-container">
+          <input
+               type="text"
+               name=""
+               class="ui-name-select-container"
+               readonly="readonly"
+               valtype="required"
+               >
+          <input type="hidden" name="" class="ui-code-select-container">
+     </div>
+                    </code></pre>
+                    <pre><code data-language="javascript">
+     $('.ui-select-container').BSelect({ //调用
+          url:PATH+'js/data/career.json', //ajax数据地址
+          addAllSelect:false, //是否展示父级菜单名称
+          callback:function(o){
+              o.removeClass('error').addClass('true');
+          }
+     });
+                    </code></pre>
+                     </div>
+
+                </div>
+
+           </div> <!-- plugin ending -->
+       </div>
+        <!-- module ending -->
+         <div id="codes" class="module">
+            <h4>实用代码</h4>
+
+            <div class="m_item" id="canvas">
+                 <div class="mi_tit"><i class="iconfont">&#xe612;</i>环形进度图生成</div>
+                 <div class="m_readme">
+                      <div class="mr_tit">代码片段</div>
+                 </div>
+                 <div class="mi_view">
+                      <div class="m_view_header"><p></p></div>
+                      <div class="m_view_body">
+                         <pre><code data-language="javascript" >
+     /**
+      *  @ 生成 0%-100% 环形进度PNG拼图,动态设置backgroundPosition使用
+      */
+     window.onload = function(){
+          var canvas = document.getElementById("mycanvas"),
+              context =  canvas.getContext("2d");
+          /* Arc()方法绘制半径为60圆弧 */
+          context.beginPath();
+          context.arc(61 ,(61+122*i)  , 60  ,1.5*Math.PI , (1.5+0.02*i)*Math.PI );
+          context.lineWidth = 1;
+          context.strokeStyle = "#1da563";
+          context.stroke();
+          /* 圆环文本设置 , 不需要可删除 */
+          context.font="14px Arial";
+          context.fillText( i+"%" ,61, (61+122*i) ); // 圆心百分数 (可选)
+          context.textAlign='center';//文本水平对齐方式
+          context.textBaseline='middle';//文本垂直方向，基线位置
+          };
+     };
+                         </code></pre>
+                      </div>
+                 </div>
+                 <div class="mi_btn">
+                      <a target="_blank" href="example/code/canvas.html"><i class="iconfont">&#xe614;</i>效果预览</a>
+                 </div>
+            </div> <!-- plugin ending -->
+
+            <div class="m_item" id="delayhide">
+                 <div class="mi_tit"><i class="iconfont">&#xe612;</i>延时隐藏下拉</div>
+                 <div class="m_readme">
+                      <div class="mr_tit">代码片段</div>
+                 </div>
+                 <div class="mi_view">
+                      <div class="m_view_header"><p></p></div>
+                      <div class="m_view_body">
+                         <pre><code data-language="javascript" >
+     /**
+      *  @ 用户体验：延时隐藏下拉（防止意外滑出） ,并重置滚动条scrollTop
+      */
+     var slidebox = $('.scroll'), oHider;
+     $(".oBox").hover(function(){
+          clearInterval(oHider);
+          if(slidebox.is(":hidden")){
+             slidebox.show().scrollTop(0);
+          }else{
+             return false;
+          }
+      },function(){
+          oHider = setTimeout(function(){
+             slidebox.hide();
+          }, 1000)
+     });
+                         </code></pre>
+                      </div>
+                 </div>
+                 <div class="mi_btn">
+                      <a target="_blank" href="example/code/delayhide.html"><i class="iconfont">&#xe614;</i>效果预览</a>
+                 </div>
+            </div> <!-- plugin ending -->
+
+            <div class="m_item" id="pagenav">
+                 <div class="mi_tit"><i class="iconfont">&#xe612;</i>页面类目导航</div>
+                 <div class="m_readme">
+                      <div class="mr_tit">代码片段</div>
+                 </div>
+                 <div class="mi_view">
+                      <div class="m_view_header"><p></p></div>
+                      <div class="m_view_body">
+                         <pre><code data-language="javascript" >
+     /**
+     *  @ 页面类目导航悬浮 , 可视区域导航高亮 , 导航设置锚点
+     */
+     $(window).scroll(function(){
+          var top = $(document).scrollTop(), items = $(".model").find(".ma"),
+              fixedMenu = $(".fixedModel"); var curId;
+          items.each(function(){
+               var itemsTop = $(this).offset().top;
+               if(top > itemsTop-100){
+                 curId = "#" + $(this).attr("id");
+               }else{
+                 return false;
+               }
+          });
+          var curLink = fixedMenu.find(".current");
+          if( curId && curLink.attr("href") != curId ){
+               curLink.removeClass("current");
+               fixedMenu.find( "[href=" + curId + "]" ).addClass("current");
+          }
+     });
+                         </code></pre>
+                      </div>
+                 </div>
+                 <div class="mi_btn">
+                      <a target="_blank" href="example/code/pagenav.html"><i class="iconfont">&#xe614;</i>效果预览</a>
+                 </div>
+            </div> <!-- plugin ending -->
+
+
+             <div class="m_item" id="browertip">
+                 <div class="mi_tit"><i class="iconfont">&#xe612;</i>检测终端设备</div>
+                 <div class="m_readme">
+                      <div class="mr_tit">代码片段</div>
+                 </div>
+                 <div class="mi_view">
+                      <div class="m_view_header"><p></p></div>
+                      <div class="m_view_body">
+                         <pre><code data-language="javascript" >
+     /**
+     *  @ 检测终端设备 匹配各版本IE
+     */
+     var browserRedirect ={
+          _ua:navigator.userAgent,
+          lowIE:function(){
+               if(/msie\s+[5-6]\./i.test(this._ua)){
+                 alert('low B ie 6');
+               }
+          },
+          whichTerminal:function(){
+              var sUserAgent = navigator.userAgent.toLowerCase(),
+                bIsIpad = sUserAgent.match(/ipad/i) == "ipad",
+                bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os",
+                bIsMidp = sUserAgent.match(/midp/i) == "midp",
+                bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4",
+                bIsUc = sUserAgent.match(/ucweb/i) == "ucweb",
+                bIsAndroid = sUserAgent.match(/android/i) == "android",
+                bIsCE = sUserAgent.match(/windows ce/i) == "windows ce",
+                bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile",
+                console.log("浏览设备为：");
+                if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+                   console.log("phone");
+                 }else{
+                   console.log("pc");
+                }
+          }
+     };
+                         </code></pre>
+                      </div>
+                 </div>
+            </div> <!-- plugin ending -->
+<div class="m_item" id="stopmouse">
+                 <div class="mi_tit"><i class="iconfont">&#xe612;</i>阻止鼠标滑轮事件冒泡</div>
+                 <div class="m_readme">
+                      <div class="mr_tit">代码片段</div>
+                 </div>
+                 <div class="mi_view">
+                      <div class="m_view_header"><p></p></div>
+                      <div class="m_view_body">
+                         <pre><code data-language="javascript" >
+     /**
+     *  @ 阻止鼠标滑轮事件冒泡: 滚动页面中div的滚动条，禁用页面滚动条的滚动
+     */
+     preventScroll:function(){
+          $(this).each(function(){
+               var _this = this;
+               if(navigator.userAgent.indexOf('Firefox') >= 0){
+                    _this.addEventListener('DOMMouseScroll',function(e){
+                         _this.scrollTop += e.detail > 0 ? 60 : -60; // 重置scrollTop值
+                         e.preventDefault();
+                     },false);
+               }else{
+                    _this.onmousewheel = function(e){
+                         e = e || window.event;
+                         _this.scrollTop += e.wheelDelta > 0 ? -60 : 60; // 重置scrollTop值
+                         return false;
+                    };
+               }
+          })
+     }
+                         </code></pre>
+                      </div>
+                 </div>
+                 <div class="mi_btn">
+                      <a target="_blank" href="example/code/mousewheel_stopPropagation.html"><i class="iconfont">&#xe614;</i>效果预览</a>
+                 </div>
+            </div> <!-- plugin ending -->
+
+            
+
+       </div>
+       <!-- module ending -->
+
+  </div>
+
+
+
+</body>
+<script src="res/js/jquery-1.11.3.min.js"></script>
+<script src="res/js/rainbow.min.js"></script>
+<script src="res/js/main.js"></script>
+</html>

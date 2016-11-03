@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>test scroll组件</title>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+    <link rel="stylesheet" type="text/css" href="css/base.css"/>
+   
+  </head>
+   <style>
+        .select-date-model{ position:relative; width:940px; height:30px; background-color:#f2f2f2; overflow:hidden;}  
+	    .select-date-model a.Arrowbtn{ position:absolute; display:inline-block; width:25px; height:30px; background-color:#e6e6e6; background-image:url(images/arrow_btn.png); }  
+	    .select-date-model a.left-Arrowbtn{ left:0px; top:0px; background-position:0px 0px;}  
+	    .select-date-model a.right-Arrowbtn{right:0px; top:0px;  background-position:-25px 0px;}  
+	    .select-date-model a.left-Arrowbtn:hover{ background-color:#f99a34; background-position:0px -30px;}  
+	    .select-date-model a.right-Arrowbtn:hover{ background-color:#f99a34; background-position:-25px -30px;}  
+		.select-date-model .sel-scroll-box{ width:890px; height:30px; margin:0 auto; overflow:hidden;}
+		.select-date-model .sel-scroll-box .s-items-ul{ width:700%;}
+		.select-date-model .sel-scroll-box .s-items-ul li{ float:left; width:84px; height:30px; padding:0px 14px; }
+		.select-date-model .sel-scroll-box .s-items-ul li a{ display:inline-block; width:84px; height:30px; line-height:30px; text-align:center; font-family:aril,"microsoft yahei", sans-serif; color:#666; font-size:12px;}
+		.select-date-model .sel-scroll-box .s-items-ul li.current a{ background-color:#d5edf9;}
+   </style>
+  <body  style="margin: 50px; background-color: #fafafa;">
+
+  <h4 style=" margin:20px 0px;font-family:'Microsoft Yahei', 'Georgia'; font-size: 15px;  ">点击滚动scroll组件</h4>
+
+
+  <div class="select-date-model select-date-A">
+         <a class="Arrowbtn left-Arrowbtn" href="javascript:;"></a>           
+         <a class="Arrowbtn right-Arrowbtn" href="javascript:;"></a> 
+         <div class="sel-scroll-box">
+             <ul class="s-items-ul clearfix">
+                <li class="current"><a href="javascript:;">2015-07-16</a></li>
+                <li><a href="javascript:;">2015-07-17</a></li>
+                <li><a href="javascript:;">2015-07-18</a></li>
+                <li><a href="javascript:;">2015-07-18</a></li>
+                <li><a href="javascript:;">2015-07-19</a></li>
+                <li><a href="javascript:;">2015-07-20</a></li>
+                <li><a href="javascript:;">2015-07-21</a></li>
+                <li><a href="javascript:;">2015-07-22</a></li>
+                <li><a href="javascript:;">2015-07-23</a></li>
+                <li><a href="javascript:;">2015-07-24</a></li>
+                <li><a href="javascript:;">2015-07-25</a></li>
+                <li><a href="javascript:;">2015-07-26</a></li>
+             </ul>
+         </div>          
+    </div> 
+     
+<br>
+<br>
+
+    <div class="select-date-model select-date-B">
+         <a class="Arrowbtn left-Arrowbtn" href="javascript:;"></a>           
+         <a class="Arrowbtn right-Arrowbtn" href="javascript:;"></a> 
+         <div class="sel-scroll-box">
+             <ul class="s-items-ul clearfix">
+                <li class="current"><a href="javascript:;">2015-07-16</a></li>
+                <li><a href="javascript:;">2015-07-17</a></li>
+                <li><a href="javascript:;">2015-07-18</a></li>
+                <li><a href="javascript:;">2015-07-18</a></li>
+                <li><a href="javascript:;">2015-07-19</a></li>
+                <li><a href="javascript:;">2015-07-20</a></li>
+                <li><a href="javascript:;">2015-07-21</a></li>
+                <li><a href="javascript:;">2015-07-22</a></li>
+                <li><a href="javascript:;">2015-07-23</a></li>
+                <li><a href="javascript:;">2015-07-24</a></li>
+                <li><a href="javascript:;">2015-07-25</a></li>
+                <li><a href="javascript:;">2015-07-26</a></li>
+             </ul>
+         </div>          
+    </div>  
+    
+    
+    
+  </body>
+<script src="../../res/js/jquery-1.11.3.min.js"></script>
+  <script>
+	;(function($){
+		 $.fn.extend({
+		     scrollPlugin:function(options){
+				var defaults = {
+					showItem:8, //展示的个数
+					speed:200, //滚动速度
+					callBack:function(){}
+				};
+                var options  = $.extend(true,defaults,options);
+				this.each(function(){
+					var _this = $(this),
+					    _leftArrow = $('.left-Arrowbtn' , _this),
+					    _rightArrow = $('.right-Arrowbtn' , _this),
+					    _srcoolBox = $('.s-items-ul' , _this),
+						_itemWidth= _srcoolBox.find('li').outerWidth(),
+						_itemLength= _srcoolBox.find('li').length,
+						_scrollItem=_itemLength-options.showItem,  //滚动的个数
+						_index = 0 ;
+						
+				    var S ={
+						init:function(){
+						  _srcoolBox.css({width :  _itemWidth*_itemLength }); //重置滚动容器ul宽度
+						  _leftArrow.unbind('click').bind('click' , S.rightScroll);
+						  _rightArrow.unbind('click').bind('click' , S.leftScroll);
+						  options.callBack();
+						  
+						},
+						leftScroll:function(){
+						   _index +=1;
+						   _index == _scrollItem+1 ? _index = _scrollItem :'';
+						   S.showPlay(_index);
+						  
+						},
+						rightScroll:function(){
+						   _index -=1;
+						   _index == -1 ? _index = _index = 0 :'';
+						   S.showPlay(_index);
+						},
+						showPlay:function(_index){
+						   _srcoolBox.stop(true,false).animate({marginLeft:-_index*_itemWidth},options.speed);	
+						}
+					};
+					S.init();
+				});
+				return this;
+			 } 
+		 })  
+	})(jQuery);
+	
+	$(".select-date-A").scrollPlugin({
+		speed:100,
+		callBack:function(){
+		  $('li' , $(".select-date-A")).unbind('click').bind('click' , function(){
+			   $(this).addClass('current').siblings().removeClass('current');
+		  });
+		} 
+    });
+	$(".select-date-B").scrollPlugin({
+		speed:250,
+		callBack:function(){
+		  $('li' , $(".select-date-B")).unbind('click').bind('click' , function(){
+			   $(this).addClass('current').siblings().removeClass('current');
+		  });
+		} 
+    });
+	
+	
+	
+	
+  </script>
+</html>

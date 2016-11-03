@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+     <title>demo</title>
+     <link rel="stylesheet" type="text/css" href="css/base.css"/>
+</head>
+<style>
+
+	 
+	 .selecDatePeriod{position:relative; float:left; height:28px; border:1px solid #ccc; }   
+	 .timeSelectBar{ height:28px;}
+	 .timeSelectBar input{ float:left; font-family:'Tahoma' ; font-size:14px; color:#666; border:none;}
+	 .timeSelectBar input.tselect-same{ height:14px; line-height:14px; padding:6px 0px 6px 10px;}
+	 .timeSelectBar input.startInput{ width:80px;}
+	 .timeSelectBar input.lineInput{ width:14px; height:28px; line-height:28px; padding:0 5px; color:#999;}
+	 .timeSelectBar input.endInput{ width:120px;  padding:6px 0px 6px ; background:url(images/sprite.png) no-repeat -328px -45px;}
+	 
+	 .timeHideModel{ position:absolute; left:-275px; top:28px; z-index:333; width:508px; background:#fafafa; border:1px solid #ccc;}
+	 .dateTabBtn{ height:28px; border-bottom:1px solid #8dd6f7; padding-left:40px;}
+	 .dateTabBtn a{  float:left; display:inline-block;color:#999; height:28px; padding:0px 25px; line-height:28px; font-size:12px; margin-top:-1px; border-bottom:1px solid #8dd6f7; border-top:1px solid #ccc; background-color:#efefef;  }
+	 .dateTabBtn a.current{ border:1px solid #8dd6f7;border-bottom:1px solid #d5edf9; background-color:#d5edf9; color:#666; }
+	 
+	 .detailDateWarp , .detailDateCont{ position:static; }
+	 .detailDateWarp .sureClose{ display:inline-block; height:22px; line-height:22px; padding:0px 18px; background-color:#f99a34; color:#fff; font-size:12px; margin:10px auto; margin-left:220px; border-radius:2px;}
+	  .detailDateWarp .sureClose:hover{ background-color:#ec8210;} 
+	 
+	 
+</style>
+
+<body>
+
+
+
+<div class="selecDatePeriod" style="margin:100px 0px 0px 390px;">
+   <div class="timeSelectBar clearfix"> 
+        <input class="tselect-same startInput date12"  type="text" readonly='readonly' value="2015-03-02" />
+        <input class="lineInput" type="text" readonly='readonly' value="至" />
+        <input class="tselect-same endInput date12" type="text" readonly='readonly' value="2015-03-09" />
+   </div>
+   
+   <div class="none timeHideModel">
+       <div class="dateTabBtn dateTabBtn1 clearfix" data-trigger="spcalendar">
+             <a href="javascript:;" data-mode="month">按月</a>
+             <a href="javascript:;" data-mode="week">按周</a>
+             <a class="current" href="javascript:;" data-mode="date">按日</a>
+       </div>
+       <div class="detailDateWarp">
+           <div class="detailDateCont"></div>
+           <a class="sureClose" href="javascript:;">确定</a> 
+       </div>
+   </div>
+  
+</div><!-- //selecDatePeriod ending -->
+
+
+
+
+
+
+
+<div class="selecDatePeriod"  style="margin:100px 0px 0px 100px;">
+   <div class="timeSelectBar clearfix"> 
+        <input class="tselect-same startInput date13"  type="text" readonly='readonly' value="2015-03-02" />
+        <input class="lineInput" type="text" readonly='readonly' value="至" />
+        <input class="tselect-same endInput date13" type="text" readonly='readonly' value="2015-03-09" />
+   </div>
+   
+   <div class="none timeHideModel">
+       <div class="dateTabBtn dateTabBtn2 clearfix" data-trigger="spcalendar">
+             <a href="javascript:;" data-mode="month">按月</a>
+             <a href="javascript:;" data-mode="week">按周</a>
+             <a class="current" href="javascript:;" data-mode="date">按日</a>
+       </div>
+       <div class="detailDateWarp">
+           <div class="detailDateCont"></div>
+          <a class="sureClose" href="javascript:;">确定</a>     
+       </div>
+   </div>
+  
+</div><!-- //selecDatePeriod ending -->
+
+
+
+
+
+
+<script src="../../res/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/datepickerCore.js"></script>
+<script type="text/javascript" src="js/datepickerUi.js"></script>
+<script type="text/javascript">
+      ;(function(){
+		 /* 
+		   $('.selecDatePeriod .timeSelectBar .date12').click(function(){
+		       var _htmldate = "<div class='timeHideModel'><div class='dateTabBtn clearfix' data-trigger='spcalendar'><a href='javascript:;' data-mode='month'>按月</a><a href='javascript:;' data-mode='week'>按周</a><a class='current' href='javascript:;' data-mode='date'>按日</a></div><div class='detailDateWarp'><div class='detailDateCont'></div> <a class='sureClose' href='javascript:;'>确定</a></div></div>";  
+			   var _warpbox = $(this).parents('selecDatePeriod');
+				_warpbox.append(_htmldate);
+				
+				 
+			 $(this).parents('selecDatePeriod').children('timeHideModel').show();
+				
+		})
+		  */
+		  
+			var obj = $(".date12").spcalendar({daypanel: 2});
+			$(".dateTabBtn1 a").bind('click', function () {
+				$(this).addClass('current').siblings('a').removeClass('current');
+				obj.options.defaultType = $(this).attr('data-mode');
+				obj.calendarShow();
+				
+			});
+			
+			
+			var obj2 = $(".date13").spcalendar({daypanel: 2 });
+			$(".dateTabBtn2 a").bind('click', function () {
+				$(this).addClass('current').siblings('a').removeClass('current');
+				obj2.options.defaultType = $(this).attr('data-mode');
+				obj2.calendarShow();
+				
+			});
+			
+			
+			
+	  })(jQuery);   
+</script>
+</body>
+
+</html>

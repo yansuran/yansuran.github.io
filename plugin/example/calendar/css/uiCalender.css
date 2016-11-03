@@ -1,0 +1,145 @@
+@charset "utf-8";
+/* calendar-S- */
+.calenderBox {
+	
+  border: 1px solid #efefef;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.calenderBox .calenderInner:after {
+  display: block;
+  content: ".";
+  height: 0;
+  visibility: hidden;
+  clear: both;
+  font-size: 0;
+  line-height: 0;
+}
+.calenderBox .table-condensed {
+  float: left;
+  max-width: 100%;
+  background-color: transparent;
+  border-spacing: 0;
+  padding: 0 5px;
+  text-align: center;
+}
+
+
+
+
+.calenderBox .table-condensed thead {
+  
+}
+.calenderBox .table-condensed thead th {
+  padding: 8px 6px 4px; font-size:13px; color:#07a8dc; font-family:'Microsoft Yahei'; 
+}
+.calenderBox .table-condensed thead th.dow {
+  font-weight: normal;
+  border-top: 1px solid #EFEFEF;
+  border-bottom: 1px solid #EFEFEF;
+}
+.calenderBox .table-condensed thead th .switch-year,
+.calenderBox .table-condensed thead th .switch-month {
+  cursor: pointer;
+}
+.calenderBox .table-condensed thead th .switch-year:hover,
+.calenderBox .table-condensed thead th .switch-month:hover {
+  color: #47b7e6;
+}
+.calenderBox .table-condensed tbody td {
+  padding: 5px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size:13px;
+  color:#666;
+  font-family:'Tahoma';
+}
+.calenderBox .table-condensed tbody td:hover {
+  color: #47b7e6;
+  border-color: #47b7e6;
+}
+.calenderBox .table-condensed tbody td.new,
+.calenderBox .table-condensed tbody td.old,
+.calenderBox .table-condensed tbody td.disabled {
+  color: #c7c7c7;
+  cursor: not-allowed;
+}
+.calenderBox .table-condensed tbody td.active {
+  color: #47b7e6;
+  border-color: #47b7e6;
+}
+.calenderBox .table-condensed tbody td.year {
+  padding: 20px 10px;
+}
+.calenderBox .table-condensed tbody td.month {
+  padding: 10px 5px; font-size:12px; color:#666;
+}
+
+.calenderBox .table-condensed tbody td.pressed {
+  background-color: #47b7e6;
+  color: #fff;
+}
+
+.calenderBox a.prev,
+.calenderBox a.next {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  width: 26px;
+  height: 28px;
+  cursor: pointer;
+}
+.calenderBox a.prev i,
+.calenderBox a.next i {
+  display: inline-block;
+  position: relative;
+  top: 5px;
+  left: 10px;
+  width: 5px;
+  height: 9px;
+  background: url(../images/calendar.png) no-repeat;
+}
+.calenderBox a.prev {
+  left: 0;
+  border-right: 1px solid #EFEFEF;
+}
+.calenderBox a.prev:hover i {
+  background-position: -5px 0;
+}
+.calenderBox a.next {
+  right: 0;
+  border-left: 1px solid #EFEFEF;
+}
+.calenderBox a.next i {
+  background-position: 0 -9px;
+}
+.calenderBox a.next:hover i {
+  background-position: -5px -9px;
+}
+.self-define {
+  color: red;
+}
+
+/* calendar-E- */
+
+.calenderBox .table-condensed-month{ width:100%; padding-bottom:5px;}
+.calenderBox .table-condensed-week{  width:100%; padding-bottom:10px;}
+.calenderBox .table-condensed-date{ width:48%; padding:4px 34px;}
+.calenderBox .table-condensed-date tbody td{ font-size:12px; color:#666;}
+.calenderBox .table-condensed-date thead th.dow{ color:#999;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,493 @@
+﻿[
+    {
+        "name": "计算机硬件", 
+        "parentCode":"adgdgf", 
+        "code": "a0001", 
+        "status": true, 
+        "list": [
+            {
+                "name": "高级软件工程师", 
+                "parentCode": "a0001", 
+                "code": "a0001_1", 
+                "status": true, 
+                "list": [
+                    {
+                        "name": "三级菜单-A", 
+                        "parentCode": "a0001_1", 
+                        "code": "a0001_1_1", 
+                        "status": true, 
+                        "list": [
+							{
+								"name": "四级菜单-A", 
+								"parentCode": "a0001_1_1", 
+								"code": "a0001_1_1_1", 
+								"status": true, 
+								"list": [
+									
+								 ]
+							}
+						 ]
+                    }, 
+                    {
+                        "name": "三级菜单", 
+                        "parentCode": "a0001_1", 
+                        "code": "a0001_1_2", 
+                        "status": true, 
+                        "list": [ ]
+                    }
+                ]
+            }, 
+            {
+                "name": "软件工程师", 
+                "parentCode": "a0001", 
+                "code": "a0001_2", 
+                "status": true, 
+                "list": [ ]
+            }, 
+            {
+                "name": "UI设计师/工程师", 
+                "parentCode": "a0001", 
+                "code": "a0001_3", 
+                "status": true, 
+                "list": [ ]
+            }, 
+            {
+                "name": "仿真应用工程师", 
+                "parentCode": "a0001", 
+                "code": "a0001_4", 
+                "status": true, 
+                "list": [ ]
+            }, 
+            {
+                "name": "ERP实施顾问", 
+                "parentCode": "a0001", 
+                "code": "a0001_5", 
+                "status": true, 
+                "list": [ ]
+            }
+        ]
+    }, 
+    {
+        "name": "计算机软件", 
+        "parentCode": "", 
+        "code": "a0002", 
+        "status": true, 
+        "list": [
+            {
+                "name": "高级软件工程师", 
+                "parentCode": "a0002", 
+                "code": "a0002_1", 
+                "status": false, 
+                "list": [
+                    {
+                        "name": "三级菜单-A", 
+                        "parentCode": "a0002_1", 
+                        "code": "a0002_2_1", 
+                        "status": true, 
+                        "list": [ ]
+                    }, 
+                    {
+                        "name": "三级菜单", 
+                        "parentCode": "a0002_1", 
+                        "code": "a0002_2_2", 
+                        "status": true, 
+                        "list": [ ]
+                    }
+                ]
+            }, 
+            {
+                "name": "软件工程师", 
+                "parentCode": "a0002", 
+                "code": "a0002_2", 
+                "status": true, 
+                "list": [ ]
+            }, 
+            {
+                "name": "UI设计师/工程师", 
+                "parentCode": "a0002", 
+                "code": "a0002_3", 
+                "status": true, 
+                "list": [ ]
+            }, 
+            {
+                "name": "仿真应用工程师", 
+                "parentCode": "a0002", 
+                "code": "a0002_4", 
+                "status": true, 
+                "list": [ ]
+            }, 
+            {
+                "name": "ERP实施顾问", 
+                "parentCode": "a0002", 
+                "code": "a0002_5", 
+                "status": true, 
+                "list": [ ]
+            }, 
+            {
+                "name": "ERP技术开发", 
+                "parentCode": "a0002", 
+                "code": "a0002_6", 
+                "status": true, 
+                "list": [ ]
+            }, 
+            {
+                "name": "需求工程师", 
+                "parentCode": "a0002", 
+                "code": "a0002_7", 
+                "status": true, 
+                "list": [ ]
+            }, 
+            {
+                "name": "系统集成工程师", 
+                "parentCode": "a0002", 
+                "code": "a0002_8", 
+                "status": true, 
+                "list": [ ]
+            }, 
+            {
+                "name": "系统分析员", 
+                "parentCode": "a0002", 
+                "code": "a0002_9", 
+                "status": true, 
+                "list": [ ]
+            }, 
+            {
+                "name": "系统工程师", 
+                "parentCode": "a0002", 
+                "code": "a0002_10", 
+                "status": true, 
+                "list": [ ]
+            }, 
+            {
+                "name": "系统架构设计师", 
+                "parentCode": "a0002", 
+                "code": "a0002_11", 
+                "status": true, 
+                "list": [ ]
+            }, 
+            {
+                "name": "数据库工程师/管理员", 
+                "parentCode": "a0002", 
+                "code": "a0002_12", 
+                "status": true, 
+                "list": [ ]
+            }, 
+            {
+                "name": "计算机辅助设计工程师", 
+                "parentCode": "a0002", 
+                "code": "a0002_13", 
+                "status": true, 
+                "list": [ ]
+            }, 
+            {
+                "name": "其他", 
+                "parentCode": "a0002", 
+                "code": "a0002_14", 
+                "status": true, 
+                "list": [ ]
+            }
+        ]
+    }, 
+    {
+        "name": "互联网/电子商务/网游", 
+        "parentCode": "", 
+        "code": "a0003", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "IT-管理", 
+        "parentCode": "", 
+        "code": "a0004", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "IT-品管、技术支持及其他", 
+        "parentCode": "", 
+        "code": "a0005", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "通信技术开发及应用", 
+        "parentCode": "", 
+        "code": "a0006", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "电子/电器/半导体/仪器仪表", 
+        "parentCode": "", 
+        "code": "a0007", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "广告", 
+        "parentCode": "", 
+        "code": "a0008", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "文字媒体/出版", 
+        "parentCode": "", 
+        "code": "a0009", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "印刷/包装/造纸", 
+        "parentCode": "", 
+        "code": "a0010", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "采掘业/冶炼", 
+        "parentCode": "", 
+        "code": "a0011", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "娱乐/休闲/体育", 
+        "parentCode": "", 
+        "code": "a0012", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "法律", 
+        "parentCode": "", 
+        "code": "a0013", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "石油/化工/矿产/地质", 
+        "parentCode": "", 
+        "code": "a0014", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "环保", 
+        "parentCode": "", 
+        "code": "a0015", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "交通/运输/物流", 
+        "parentCode": "", 
+        "code": "a0016", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "批发/零售", 
+        "parentCode": "", 
+        "code": "a0017", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "教育/培训/院校", 
+        "parentCode": "", 
+        "code": "a0018", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "学术/科研", 
+        "parentCode": "", 
+        "code": "a0019", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "房地产开发", 
+        "parentCode": "", 
+        "code": "a0020", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "生活服务", 
+        "parentCode": "", 
+        "code": "a0021", 
+        "status": true, 
+        "list": [ ]
+    }, 
+
+    {
+        "name": "政府/公共事业", 
+        "parentCode": "", 
+        "code": "a0022", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "农/林/牧/渔", 
+        "parentCode": "", 
+        "code": "a0023", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "汽车及零配件", 
+        "parentCode": "", 
+        "code": "a0024", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "中介服务", 
+        "parentCode": "", 
+        "code": "a0025", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "电力/水利", 
+        "parentCode": "", 
+        "code": "a0026", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "网络游戏", 
+        "parentCode": "", 
+        "code": "a0027", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "会计/审计", 
+        "parentCode": "", 
+        "code": "a0028", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "银行", 
+        "parentCode": "", 
+        "code": "a0029", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "保险", 
+        "parentCode": "", 
+        "code": "a0030", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "家具/家电/工艺品/玩具/珠宝", 
+        "parentCode": "", 
+        "code": "a0031", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "办公用品及设备", 
+        "parentCode": "", 
+        "code": "a0032", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "医疗/护理/卫生", 
+        "parentCode": "", 
+        "code": "a0033", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "医疗设备/器械", 
+        "parentCode": "", 
+        "code": "a0034", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "公关/市场推广/会展", 
+        "parentCode": "", 
+        "code": "a0035", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "影视/媒体/艺术/文化传播", 
+        "parentCode": "", 
+        "code": "a0036", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "家居/室内设计/装潢", 
+        "parentCode": "", 
+        "code": "a0037", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "物业管理/商业中心", 
+        "parentCode": "", 
+        "code": "a0038", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "检测/认证", 
+        "parentCode": "", 
+        "code": "a0039", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "酒店/旅游", 
+        "parentCode": "", 
+        "code": "a0040", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "美容/保健", 
+        "parentCode": "", 
+        "code": "a0041", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "外包服务", 
+        "parentCode": "", 
+        "code": "a0042", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "非盈利机构", 
+        "parentCode": "", 
+        "code": "a0043", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "多元化业务集团公司", 
+        "parentCode": "", 
+        "code": "a0044", 
+        "status": true, 
+        "list": [ ]
+    }, 
+    {
+        "name": "其他行业", 
+        "parentCode": "", 
+        "code": "a0045", 
+        "status": true, 
+        "list": [ ]
+    }
+]

@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Lab - image loading</title>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+    <link rel="stylesheet" type="text/css" href="css/base.css"/>
+       <style>
+             div{  width: 1000px; line-height: 22px; margin:50px auto;  font-size: 14px; font-family: 'tomaha'; text-align: center;}
+       </style>
+
+  </head>
+       
+  <body>
+  
+     <div class="information"
+          style="text-align: center;font-size: 20px;">
+          当前加载进度:0%
+     </div>
+     <div class="complete"></div>
+     
+  </body>
+<script src="../../res/js/jquery-1.11.3.min.js"></script>
+  <script>
+      ;(function($){
+		 // console.log($);
+		 $.extend({
+				server:function(){//服务器环境
+					return {
+						0   : 'https://yansuran.github.io/plugin/example/imageLoad/', //生产
+						1   : '', //测试
+						2   : '',  //开发 
+						888 : '' //本地
+					}[0]/*[/\(updebug\s(\d+)\)/g.exec(navigator.userAgent.toLowerCase())[1]];//(updebug 888)*/
+				}(),
+				isString:function(obj){//是否字符串
+					return this.type(obj)==='string';
+				},
+				isBoolean:function(obj){//是否boolean
+					return this.type(obj)==='boolean';
+				},
+				creatlabel:function(s){//创建<div>
+					return String.fromCharCode(60)+(s||'div')+String.fromCharCode(62);
+				},
+				getNormalPath:function(param,type){//获取绝对路径
+					var s={1:'images',2:'js',3:'css',4:'data'}[type||1];
+					if(this.isString(param)){
+						return this.server+s+'/'+param;
+					};
+					if(this.isArray(param)&&param.length>0){
+						for(var i=0,str=[];i<param.length;i++){
+							str.push(this.server+s+'/'+param[i]);
+						};
+						return str;
+					};
+					return param;
+				},
+				delay:function(time,callback){//延迟
+					this.isNumeric(time)&&setTimeout(function(){
+						callback.apply(arguments[0][0]||this,[].slice.call(arguments[0],1));	
+					}.bind(this,[].slice.call(arguments,2)),time);
+				},
+				loadImage:function(ops){
+                    var defaults = {
+						pic:[],
+						time:0,
+						onProgress:function(){},
+						onComplete:function(){}
+					};	
+					//this.each(function(){
+					var S ={
+						init:function(){
+							ops=$.extend(true,{},defaults,ops);
+							$.isString(ops.pic)&&(ops.pic=[ops.pic]);
+							this.creat(ops,[].slice.call(arguments,1));
+						},
+						creat:function(ops,args){
+							($.isArray(ops.pic)&&ops.pic.length>0)?this.load(0,ops,args):ops.onComplete.apply(ops.pic,args);
+						},
+						load:function(index,ops,args){
+							$.delay(ops.time,function(){
+								$($.creatlabel('img'),{
+									src:$.getNormalPath(ops.pic[index])
+								}).load(function(){	
+									$.isFunction(ops.onProgress)&&ops.onProgress.apply($.getNormalPath([ops.pic[index]]),[index+1,ops.pic.length].concat(args));
+									(++index)<ops.pic.length?this.load(index,ops,args):$.isFunction(ops.onComplete)&&ops.onComplete.apply($.getNormalPath(ops.pic),args);	
+								}.bind(this));
+							},this);
+						}
+					}
+					S.init();
+				//	});
+					return this;
+				}
+		 });
+	  })(window.jQuery||window.Zepto);
+	  
+
+	  
+	  
+  </script>
+  
+  <script>
+	$.loadImage({
+		pic:['1.jpg','2.png','3.png','4.png','5.jpg','6.jpg','7.jpg','8.png','9.jpg','10.jpg'],
+		time:200,
+		onProgress:function(index,length){
+			//console.log('加载进度:'+Math.min(100,Math.ceil(index*100/length))+'%','当前图片:'+this);
+			$(".information").html(
+                 '当前加载进度:'+
+                  Math.min(100,Math.ceil(index*100/length))+'%','当前图片:'+this
+            );
+		},
+		onComplete:function(){
+            $(".complete").html(
+                 '全部加载完回调,所有资源：'+
+                 this.toString()
+            );
+		}
+	})
+  </script>  
+  
+</html>

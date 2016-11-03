@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <title>前端性能优化点</title>
+     <link rel="stylesheet" href="css/default.css" />
+     <style>
+          .extension-preview-buttons .dropdown-menu {
+               position: fixed;
+               top: 10px;
+               bottom: 10px;
+               overflow-y: auto;
+          }
+
+     </style>
+</head>
+<body>
+
+
+<div class="extension-preview-buttons" style="position:fixed;"><div class="btn-group"><button class="btn btn-default dropdown-toggle" title="Table of contents" data-toggle="dropdown">
+    目录
+</button>
+<div class="dropdown-menu pull-right" style="right: -1px;">
+    <h3>目录导航</h3>
+    <div class="table-of-contents"><div class="toc">
+<ul>
+<li><a href="#前端性能优化点">前端性能优化点</a><ul>
+<li><a href="#一-http优化">一. HTTP优化</a><ul>
+<li><a href="#减少http请求">1. 减少HTTP请求</a></li>
+<li><a href="#重定向优化">2. 重定向优化</a></li>
+<li><a href="#避免死链空链错误">3. 避免死链/空链/404/410错误</a></li>
+<li><a href="#尽早flush-buffer">4. 尽早flush buffer</a></li>
+<li><a href="#http中的character设置">5. http中的character设置</a></li>
+</ul>
+</li>
+<li><a href="#二-缓存优化">二. 缓存优化</a><ul>
+<li><a href="#浏览器缓存">1. 浏览器缓存</a><ul>
+<li><a href="#添加-expires-或-cache-control-头">添加 Expires 或 Cache-Control 头</a></li>
+<li><a href="#对动态可用缓存使用身份识别">对动态可用缓存使用“身份识别”</a></li>
+<li><a href="#为ie设置vary的header">为IE设置Vary的header</a></li>
+<li><a href="#避免firefox中url造成的缓存冲突">避免firefox中URL造成的缓存冲突</a></li>
+</ul>
+</li>
+<li><a href="#代理服务器静态资源服务器缓存">2. 代理服务器(静态资源服务器)缓存</a></li>
+</ul>
+</li>
+<li><a href="#三-dns">三. DNS</a><ul>
+<li><a href="#减小dns解析">1. 减小DNS解析</a></li>
+<li><a href="#增加静态资源域名">2. 增加静态资源域名</a></li>
+</ul>
+</li>
+<li><a href="#四-服务器负载优化">四. 服务器负载优化</a><ul>
+<li><a href="#使用cnd">1. 使用CND</a></li>
+<li><a href="#cookie优化">2. Cookie优化</a></li>
+<li><a href="#使用gzip">3. 使用Gzip</a></li>
+<li><a href="#压缩文件">4. 压缩文件</a></li>
+</ul>
+</li>
+<li><a href="#五-css相关优化">五. CSS相关优化</a><ul>
+<li><a href="#样式表合并放头部">1. 样式表合并放头部</a></li>
+<li><a href="#css编码要点">2. css编码要点</a></li>
+<li><a href="#使用css-sprite">3. 使用css Sprite</a></li>
+<li><a href="#外联css">4. 外联css</a></li>
+</ul>
+</li>
+<li><a href="#六-javascript相关优化">六. Javascript相关优化</a><ul>
+<li><a href="#js文件放底部">1. js文件放底部</a></li>
+<li><a href="#js代码去重">2. js代码去重</a></li>
+<li><a href="#无阻塞下载脚本">3. 无阻塞下载脚本</a></li>
+<li><a href="#外联js和行内js">4. 外联js和行内js</a></li>
+<li><a href="#js编码要点">5. js编码要点</a></li>
+</ul>
+</li>
+<li><a href="#七-图片相关优化">七. 图片相关优化</a></li>
+<li><a href="#八-其他优化">八. 其他优化</a></li>
+<li><a href="#相关文档">九. 相关文档</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div>
+
+
+
+  <div class="container"><h1 class="wmd-title" id="前端性能优化点">前端性能优化点</h1>
+
+<blockquote>
+  <p>说明：本文主要介绍前端性能优化点</p>
+</blockquote>
+
+<hr>
+
+<h2 class="wmd-title" id="一-http优化">一. HTTP优化</h2>
+
+<h3 class="wmd-title" id="减少http请求">1. 减少HTTP请求</h3>
+
+<ol>
+<li>合并文件，例如css代码和js代码分别合并到一个css文件和js文件中;</li>
+<li>使用css sprite，详细请参考css优化中的css sprite部分。</li>
+<li>使用base64技术</li>
+</ol>
+
+<h3 class="wmd-title" id="重定向优化">2. 重定向优化</h3>
+
+<ol>
+<li>消除没必要的跳转</li>
+<li>利用服务器重写用户键入的链接</li>
+<li>使用HTTP而不是js或者meta来重定向</li>
+</ol>
+
+<h3 class="wmd-title" id="避免死链空链错误">3. 避免死链/空链/404/410错误</h3>
+
+<ol>
+<li>避免出现404 Not Found错误</li>
+<li>避免出现图片请求空链接（img.src=””）</li>
+</ol>
+
+<h3 class="wmd-title" id="尽早flush-buffer">4. 尽早flush buffer</h3>
+
+<p>尽早的使用flush buffer可以让一部分内容先加载出来，提高用户体验。</p>
+
+<h3 class="wmd-title" id="http中的character设置">5. http中的character设置</h3>
+
+<p>指定content-type和正确的character编码</p>
+
+<hr>
+
+<h2 class="wmd-title" id="二-缓存优化">二. 缓存优化</h2>
+
+<h3 class="wmd-title" id="浏览器缓存">1. 浏览器缓存</h3>
+
+<h4 class="wmd-title" id="添加-expires-或-cache-control-头">添加 Expires 或 Cache-Control 头</h4>
+
+<ol>
+<li>对于静态资源：通过设置一个很远的过期时间来实现“从不过期”</li>
+<li><p>对于动态资源：用一个适当的 Cache-Control 头来帮助浏览器控制请求</p>
+
+<p>浏览器利用缓存来减少http请求的数目和大小，让页面加载的更快。web服务器利用http响应中的Expires头来告诉客户端一个资源能够被缓存多久。</p>
+
+<p>需要注意的是，如果你利用了一个“不过期”的Expires头，你必须在资源改变的同时改变资源的名字。这一技术提高页面性能是基于用户已经访问过你的网站的基础之上的。</p></li>
+<li><p>设置Last-Modified日期为最近资源需要改变的时间。</p></li>
+</ol>
+
+<h4 class="wmd-title" id="对动态可用缓存使用身份识别">对动态可用缓存使用“身份识别”</h4>
+
+<p>通过链接到资源的唯一url（每次改变资源时同时改变其文件名）来改变缓存</p>
+
+<h4 class="wmd-title" id="为ie设置vary的header">为IE设置Vary的header</h4>
+
+<h4 class="wmd-title" id="避免firefox中url造成的缓存冲突">避免firefox中URL造成的缓存冲突</h4>
+
+<p>firefox通过hash表存储url的缓存，但hash值仅仅有8个字符，可能会造成hash冲突，所以你需要确保你的资源urldiff多于8字符边界。</p>
+
+<h3 class="wmd-title" id="代理服务器静态资源服务器缓存">2. 代理服务器(静态资源服务器)缓存</h3>
+
+<p><em>利用Cache-control：public的头可以让资源缓存在一个web代理服务器上面来让其他用户使用。</em></p>
+
+<ol>
+<li><p>不要在静态资源的url上面添加查询字符串</p></li>
+<li><p>不用在代理服务器上缓存设置了cookie的资源</p></li>
+<li><p>要有使用代理缓存js和css文件的意识</p></li>
+</ol>
+
+<hr>
+
+<h2 class="wmd-title" id="三-dns">三. DNS</h2>
+
+<h3 class="wmd-title" id="减小dns解析">1. 减小DNS解析</h3>
+
+<p>1.固定URL提供资源
+2.尽可能的使用URL路径来代替主机域名，例如developer.example.com可以被www.example.com/developer代替。除非有技术上的原因需要不同的主机域名。
+3.将从同一主机域名下的需要先加载的js文件作为主要文件送达
+4.考虑使用DNS预解析</p>
+
+<h3 class="wmd-title" id="增加静态资源域名">2. 增加静态资源域名</h3>
+
+<p>实现多个资源的并行下载</p>
+
+<hr>
+
+<h2 class="wmd-title" id="四-服务器负载优化">四. 服务器负载优化</h2>
+
+<h3 class="wmd-title" id="使用cnd">1. 使用CND</h3>
+
+<p>CDN可以帮助用户更快的获取到所需要的资源。</p>
+
+<h3 class="wmd-title" id="cookie优化">2. Cookie优化</h3>
+
+<p>1.使用服务器端的存储为大多数的cookie来做有效载荷：在cookie里存key，在服务器端存value。
+2.移除没有用的或者重复的cookie
+3.静态资源请求中不要带上cookie
+4.不要将需要提前加载的js放到没有cookie的域中加载</p>
+
+<h3 class="wmd-title" id="使用gzip">3. 使用Gzip</h3>
+
+<p>Gzip是当前最流行，最有效的压缩方式。</p>
+
+<p>1.在http/1.1中，web客户端明确支持在http请求中 Accept-Encoding 头 的 Accept-Encoding: gzip, deflate 压缩方式
+2.Gzip一般能减少服务器响应文件70%的大小，90%的浏览器都支持gzip
+3.服务器基于文件类型来选择gzip压缩，很多网站gzip他们的html文件，同样也可以gzip脚本和样式表
+4.事实上，任何的响应文本，包括xml和json都有压缩的价值，图片和pdf文件不应该被gizp，因为他们已经被压缩过了</p>
+
+<h3 class="wmd-title" id="压缩文件">4. 压缩文件</h3>
+
+<p><em>压缩包括：Javascript、CSS、HTML</em></p>
+
+<p>让你写的页面能够更有效的压缩：
+1.按照字母排序指定css键对值
+2.按照字母排序指定html属性
+3.对html属性使用一致的引号
+4.使用一致的字母（小写字母）
+5.移除没有用到的css</p>
+
+<hr>
+
+<h2 class="wmd-title" id="五-css相关优化">五. CSS相关优化</h2>
+
+<h3 class="wmd-title" id="样式表合并放头部">1. 样式表合并放头部</h3>
+
+<p>1.将样式表移到文件的Head可以让页面加载的更快，这是因为将样式表放在头部有利于页面渲染。
+2.将样式表放在底部的问题是它阻止了许多浏览器的渲染进度。这些浏览器会锁定渲染进程来保证页面上的元素在他们的样式改变时重绘。</p>
+
+<h3 class="wmd-title" id="css编码要点">2. css编码要点</h3>
+
+<p>具体参看性能相关编码规范中的css编码规范</p>
+
+<h3 class="wmd-title" id="使用css-sprite">3. 使用css Sprite</h3>
+
+<p>1.将图片水平放置在sprite中可以让文件大小更小。
+2.对一起加载的图片使用sprite
+3.GIF和PNG图片优先使用sprite
+4.小图片优先sprite
+5.可缓存的图片使用sprite
+6.使用sprite工具
+7.尽量减少sprite图片中的空白空间
+8.将色彩范围相近的图片进行sprite</p>
+
+<h3 class="wmd-title" id="外联css">4. 外联css</h3>
+
+<p>利用浏览器缓存，将一些公共的css进行外链，使用缓存，加快用户第一次以后访问页面的速度</p>
+
+<hr>
+
+<h2 class="wmd-title" id="六-javascript相关优化">六. Javascript相关优化</h2>
+
+<h3 class="wmd-title" id="js文件放底部">1. js文件放底部</h3>
+
+<p>这一问题的原因是脚本是并行阻塞下载的。HTTP/1.1协议中建议浏览器不在同一域名下并行下载多于两个的资源。假如你的图片是在多个域名下的，你可以并行下载超过两张的图片。可是一个脚本在下载的时候，浏览器不能再开始其他的下载，即使在不同的域名下。</p>
+
+<p>一个可供采纳的建议是利用延迟加载脚本技术（defer）。这是一种可以让浏览器继续渲染的方案。不幸的是，fireforx不支持defer属性。</p>
+
+<h3 class="wmd-title" id="js代码去重">2. js代码去重</h3>
+
+<p>1.将重复的js代码去掉
+2.将没有使用过的变量去掉
+3.将没有调用到的函数去掉</p>
+
+<h3 class="wmd-title" id="无阻塞下载脚本">3. 无阻塞下载脚本</h3>
+
+<p><em>几种下载外部脚本且不被阻塞的技术</em></p>
+
+<ol>
+<li>XHR Eval：通过XMLHttpRequest从服务器端获取脚本，响应完成时通过eval执行内容。缺陷：不能跨域。</li>
+<li>XHR 注入：通过XMLHttpRequest从服务器端获取脚本，响应完成时通过创建script元素注入其中执行内容。缺陷：不能跨域。</li>
+<li>Script in Iframe：通过iframe的src属性加载脚本。</li>
+<li>Script DOM Element：通过创建script标签元素来加载脚本。</li>
+<li>Script Defer：IE特有</li>
+<li>document.write Script Tag：通过把script标签代码用write方法放到页面中加载脚本。</li>
+</ol>
+
+<h3 class="wmd-title" id="外联js和行内js">4. 外联js和行内js</h3>
+
+<p>1.将外联脚本放在外联样式表之后
+2.将行内脚本放在其他资源之后</p>
+
+<h3 class="wmd-title" id="js编码要点">5. js编码要点</h3>
+
+<p>详细请参看前端性能优化相关编码规范：js编码规范</p>
+
+<hr>
+
+<h2 class="wmd-title" id="七-图片相关优化">七. 图片相关优化</h2>
+
+<ol>
+<li>图片压缩：在条件允许的情况下尽量使用PNG8格式</li>
+<li>图片合并：详见CSS sprite</li>
+<li>图片缩放：服务器端进行图片缩放</li>
+</ol>
+
+<h2 class="wmd-title" id="八-其他优化">八. 其他优化</h2>
+
+<ol>
+<li>减少页面DOM元素</li>
+<li>延迟加载和预加载资源</li>
+<li>将Get作为Ajax请求的方法</li>
+<li>尽量不要使用iframe：</li>
+</ol>
+
+<hr>
+
+<h2 class="wmd-title" id="相关文档">九、相关文档</h2>
+
+<ul>
+<li><a href="index.html">前端JS规范文档</a></li>
+
+</ul>
+
+
+<script src="../res/js/jquery-1.11.3.min.js"></script>
+<script>
+$(function(){
+  $(".dropdown-toggle").click(function(e){
+    $(this).parent(".btn-group").toggleClass('open');
+    e.stopPropagation();
+  });
+  $(document).click(function(){
+    $(".btn-group").removeClass('open');
+  });
+});
+</script>
+</body>
+</html>

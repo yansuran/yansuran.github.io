@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Demo Code - 延时隐藏 div ,重置滚动条 </title>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+    <link rel="stylesheet" type="text/css" href="../../res/css/base.css"/>
+    <style>
+        .oBox{ position:relative; width:200px; height:30px;}
+		.control{ width:198px; height:28px; line-height:28px; border:1px solid #ccc; border-radius:2px; text-align:center; font-family:"Consolas"; cursor:pointer;}
+		.scroll{ display:none; position:absolute; left:0px; top:28px; width:188px; height:400px; padding:0px 5px; line-height:40px; overflow-x:hidden; overflow-y:auto;
+             border:1px solid #ccc; font-family:"Consolas"; background-color:#ccc; }
+    </style>
+  </head>
+
+     
+
+
+  <body  style="margin: 50px;">
+  
+      <div  class="oBox">
+           <div class="control">control box</div>
+           <div class="scroll">
+                text text text text text text text text
+                text text text text text text text text
+                text text text text text text text text
+                text text text text text text text text
+                text text text text text text text text
+                text text text text text text text text
+                text text text text text text text text
+                text text text text text text text text
+                text text text text text text text text
+                text text text text text text text text
+           </div> 
+      </div>
+
+      
+  </body>
+  <script src="../../res/js/jquery-1.11.3.min.js"></script>
+  <script>
+        ;(function($){
+			 var slidebox = $('.scroll'), oHider;
+			 
+		     $(".oBox").hover(function(){
+				   clearInterval(oHider);
+				   if(slidebox.is(":hidden")){
+                        slidebox.show().scrollTop(0);
+				   }else{
+					 return false;    
+				   }
+			  },function(){
+				oHider = setTimeout(function(){
+                     slidebox.hide();
+				}, 1000)
+			});	
+		})(jQuery);
+  </script>
+  
+</html>

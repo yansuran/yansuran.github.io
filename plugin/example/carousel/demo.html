@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>demo</title>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+    <link rel="stylesheet" type="text/css" href="css/base.css"/>
+       <style>
+            body{ background-color:#F4F4F4;}
+
+            /* slider-Model */
+            .slider-Model{ position:relative; width:100%; height:350px;}
+            .ui-banner{ height:350px; margin:0px auto;width:100%; position:relative;background:#fff; overflow:hidden;}
+            .ui-ico-bg{ background-image:url(images/banico.png); background-repeat:no-repeat;}
+            .ui-banner-focus{ width:1920px; height:350px; left:50%; margin-left:-960px; top:0px; position:absolute;z-index:1; background:url(images/load.gif) no-repeat center center;overflow:hidden;}
+            .ui-banner-focus ul{position:relative; height:350px; width:100%;}
+            .ui-banner-focus ul li{ position:absolute; left:0px; top:0px; display:none;}
+            .ui-banner-focus ul li img{ display:block; float:left;}
+            .ui-banner-number{ position:absolute; z-index:2; text-align:center; width:100px; height:13px;}
+            .ui-banner-number span{ display:inline-block; width:10px; margin:0px 3px;height:10px;cursor:pointer; background-position:-5px -5px;}
+            .ui-banner-number span.current{ width:16px; height:10px; background-position:-19px -5px;}
+       </style>
+  </head>
+
+  <body>
+  
+     <div class="slider-Model">
+        <div class="ui-banner"
+             id="J_index_banner"
+             data-links="#|#|#|#"
+             data-pic="images/banner01.jpg|images/banner02.jpg|images/banner01.jpg|images/banner02.jpg"
+        >
+            <!-- //   date-links对应link  data-pic对应src //-->
+            <div class="ui-banner-focus"></div>
+        </div> <!-- // ui-banner ending-->
+     </div> <!-- // slider-Model ending-->
+     
+     
+
+  </body>
+<script src="../../res/js/jquery-1.11.3.min.js"></script>
+  <script src="js/carousel.js"></script>
+  <script>
+       $(function(){
+            $('.ui-banner').BsliderBox({
+                 time:4000,
+                 auto:true
+            });
+       });
+  </script>
+</html>
