@@ -8,56 +8,409 @@
 <style>
     h3{ margin: 30px 0; }
     h4{ margin-top: 20px;line-height: 20px; }
-    .tab{ height: 30px;border: 1px solid #e1e1e1; }
-    .tab_item{ float:left;width: 110px;height: 30px;border-right: 1px solid #e1e1e1;line-height: 30px;text-align: center;font-size: 14px;}
-    .tab_item:hover{ color:#e60012; }
-    .tab_item.cur{ background: #e60012;color: #fff; }
-    .tab_content{ margin-top: -1px; }
-    .tab_con{ display: none; min-height: 200px;padding: 10px;border:1px solid #eaeaea;background: #f7f7f7;line-height: 20px;font-size: 14px; }
+    .j-comment-analysis{ width:978px; border:1px solid #e5e5e5; border-top:none; margin-top:10px;}
+
+    .j-analysis-tab{ position:relative;}
+    .j-analysis-tab .j-ans-kinds{ height:60px;}
+    .j-analysis-tab .j-ans-kinds li{ float:left; width:185px; height:60px;  margin-left:-1px; }
+    .j-analysis-tab .j-ans-kinds li a{ display:block; width:119px; height:58px; padding:0px 32px; background-color:#fbfbfb; border:1px solid #e5e5e5;}
+    .j-analysis-tab .j-ans-kinds .jk-item-count{ height:28px; padding-top:6px; line-height:26px; font-size:14px; color:#666; font-family:'Microsoft Yahei';}
+    .j-analysis-tab .j-ans-kinds .jk-item-percent{ width:100%; height:14px;  overflow:hidden;}
+    .j-analysis-tab .j-ans-kinds .jk-item-percent dl{}
+    .j-analysis-tab .j-ans-kinds .jk-item-percent dt{ float:left; width:75px; height:10px; margin-top:2px; background-color:#eee; overflow:hidden;}
+    .j-analysis-tab .j-ans-kinds .jk-item-percent dt div{ height:10px;background-color:#ffcfcf;}
+    .j-analysis-tab .j-ans-kinds .jk-item-percent dd{ float:left; width:34px; padding-left:10px; height:14px; line-height:14px; font-size:12px; color:#999;}
+    .j-analysis-tab .j-ans-kinds li.current{}
+    .j-analysis-tab .j-ans-kinds li.current a{ position:relative; top:-4px; height:62px;background-color:#fff; border-bottom:1px solid #fff; }
+    .j-analysis-tab .j-ans-kinds li.current .jk-item-count{  padding-top:10px;}
+    .j-analysis-tab .j-ans-kinds li.current .jk-item-percent dt div{background-color:#fb8795;}
+    .j-analysis-tab .j-ans-kinds li.current .jk-item-percent dd{ color:#fb8795;}
+    .j-ans-more{ position:absolute; right:-1px; top:0px; display:block; width:58px; height:46px; line-height:16px; padding-top:12px; text-align:center; color:#999; border:1px solid #e5e5e5; background-color:#fbfbfb;}
+    .j-ans-more:hover{ background-color:#fff; color:#fb8795;}
+
+    .j-analysis-cont{ display: none; width:914px; margin:0 auto;}
+    .j-analysis-cont .j-acount-table{ width:100%;}
+    .j-analysis-cont table tr td{border-bottom:1px solid #f0f0f0; padding:18px 0px 16px;}
+    .j-analysis-cont table tr:last-child td{ border:0px;}
+    .j-analysis-cont table tr.lastone td{ border:0px;}
+    .j-analysis-cont table tr td.jat-column1{ width:584px;}
+    .j-analysis-cont table tr td.jat-column2{ width:120px;}
+    .j-analysis-cont table tr td.jat-column3{ width:210px;}
+
+    .jat-column1 .j-p-comments{ position:relative; padding-right:24px; color:#666; line-height:22px;}
+    .j-paragra-hide{ display:none;}
+    .jp-readmore{ position:relative; display:inline-block; width:64px; height:18px; padding-left:5px;line-height:18px; border:1px solid #e5e5e5; color:#666; background-color:#f5f5f5;}
+    .j-p-comments a i.rotate{ transform:rotate(180deg);
+    -ms-transform:rotate(180deg);   
+    -moz-transform:rotate(180deg);  
+    -webkit-transform:rotate(180deg);
+    -o-transform:rotate(180deg);}
+
+    .jp-readmore i{ position:absolute; right:3px; top:6px; display:inline-block; width:10px; height:6px;/*background: url(images/sprite_icon.png) -110px -30px no-repeat;*/}
+    .jp-readmore:hover{ color:#fc8484;}
+
+    .jat-column2 .j-grade-star{}
+    .jat-column2 .j-grade-star span.jg-star{ display:inline-block;width: 86px;height: 20px;/*background: url(images/sprite_icon.png);*/
+    line-height: 20px; margin-left:5px;}
+
+    .jat-column3 .j-user-infor{ color:#999; text-align:right;}
+    .jat-column3 .j-user-infor i{ margin:0px 10px; color:#a6a5a5; font-size:10px; font-style:normal;}
+
+    .jat-column1 .j-p-comments .j-highlight{  font-weight:normal; background-color:#fff9d3; }
 </style>
 </head>
 <body>
-    <div class="wrap">
-        <h3>选项卡组件</h3>
-        <h4>"hover" 触发tab</h4>
-        <div class="tab_box tab_box1">
-            <div class="tab clearfix">
-                <a href="javascript:;" class="tab_item cur">tab1</a>
-                <a href="javascript:;" class="tab_item">tab2</a>
-                <a href="javascript:;" class="tab_item">tab3</a>
-                <a href="javascript:;" class="tab_item">tab4</a>
-            </div>
-            <div class="tab_content">
-                <div class="tab_con">tab content1</div>
-                <div class="tab_con">tab content2</div>
-                <div class="tab_con">tab content3</div>
-                <div class="tab_con">tab content4</div>
-            </div>
-        </div>
-        <h4>"click" 触发tab</h4>
-        <div class="tab_box tab_box2">
-            <div class="tab clearfix">
-                <a href="javascript:;" class="tab_item">tab1</a>
-                <a href="javascript:;" class="tab_item cur">tab2</a>
-                <a href="javascript:;" class="tab_item">tab3</a>
-                <a href="javascript:;" class="tab_item">tab4</a>
-            </div>
-            <div class="tab_content">
-                <div class="tab_con">tab content1</div>
-                <div class="tab_con">tab content2</div>
-                <div class="tab_con">tab content3</div>
-                <div class="tab_con">tab content4</div>
-            </div>
-        </div>
+<div class="wrap">
+    <h3>tab选项卡组件</h3>
+    <div class="j-comment-analysis">
+         <div class="j-analysis-tab">
+            <ul class="j-ans-kinds clearfix">
+                <li>
+                   <a href="javascript:;">
+                       <div class="jk-item-count">正品(224555)</div>
+                       <div class="jk-item-percent">
+                          <dl>
+                             <dt><div style="width:95%;"></div></dt>
+                             <dd>95%</dd>
+                          </dl>   
+                       </div>
+                   </a>
+                </li>
+                <li  class="current">
+                   <a href="javascript:;">
+                       <div class="jk-item-count">外观(2555)</div>
+                       <div class="jk-item-percent">
+                          <dl>
+                             <dt><div style="width:55%;"></div></dt>
+                             <dd>55%</dd>
+                          </dl>   
+                       </div>
+                   </a>
+                </li>
+                <li>
+                   <a href="javascript:;">
+                       <div class="jk-item-count">性价比(255)</div>
+                       <div class="jk-item-percent">
+                          <dl>
+                             <dt><div style="width:100%;"></div></dt>
+                             <dd>100%</dd>
+                          </dl>   
+                       </div>
+                   </a>
+                </li>
+                <li>
+                   <a href="javascript:;">
+                       <div class="jk-item-count">性能(55)</div>
+                       <div class="jk-item-percent">
+                          <dl>
+                             <dt><div style="width:85%;"></div></dt>
+                             <dd>85%</dd>
+                          </dl>   
+                       </div>
+                   </a>
+                </li>
+                <li>
+                   <a href="javascript:;">
+                       <div class="jk-item-count">电池(25)</div>
+                       <div class="jk-item-percent">
+                          <dl>
+                             <dt><div style="width:95%;"></div></dt>
+                             <dd>95%</dd>
+                          </dl>   
+                       </div>
+                   </a>
+                </li>
+            </ul>
+            <a class="j-ans-more" href="javascript:;">更多<br>评论</a>
+         </div>  <!-- //j-analysis-tab end --> 
+         
+         <div class="j-analysis-cont">
+             <table class="j-acount-table" cellpadding="0" cellspacing="0">
+                  <tr>
+                      <td class="jat-column1">
+                         <div class="j-p-comments">
+                            <span class="j-paragra-same"><b class="j-highlight">手机正品</b>，外观漂亮。</span>
+                         </div>
+                      </td>
+                      <td  class="jat-column2">
+                         <div class="j-grade-star">
+                              <span class="jg-star s4"></span>
+                         </div>
+                      </td>
+                      <td  class="jat-column3">
+                         <div class="j-user-infor">
+                            <span class="ju-name">太***雨</span><i>|</i><span class="ju-date">2015-01-20 17:02:20</span>
+                         </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="jat-column1">
+                         <div class="j-p-comments">
+                            <span class="j-paragra-same">手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。</span>
+                         </div>
+                      </td>
+                      <td  class="jat-column2">
+                         <div class="j-grade-star">
+                              <span class="jg-star s4"></span>
+                         </div>
+                      </td>
+                      <td  class="jat-column3">
+                         <div class="j-user-infor">
+                            <span class="ju-name">太***雨</span><i>|</i><span class="ju-date">2015-01-20 17:02:20</span>
+                         </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="jat-column1">
+                         <div class="j-p-comments">
+                           <span class="j-paragra-same">手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮,外观漂亮。手机很好，外观漂亮。</span>
+                         </div>
+                      </td>
+                      <td  class="jat-column2">
+                         <div class="j-grade-star">
+                              <span class="jg-star s4"></span>
+                         </div>
+                      </td>
+                      <td  class="jat-column3">
+                         <div class="j-user-infor">
+                            <span class="ju-name">太***雨</span><i>|</i><span class="ju-date">2015-01-20 17:02:20</span>
+                         </div>
+                      </td>
+                  </tr>
+             </table>     
+         </div> <!-- //j-analysis-cont end -->    
+         <div class="j-analysis-cont">
+             <table class="j-acount-table" cellpadding="0" cellspacing="0">
+                  <tr>
+                      <td class="jat-column1">
+                         <div class="j-p-comments">
+                            <span class="j-paragra-same">手机很好，<b class="j-highlight">外观漂亮</b>。</span>
+                         </div>
+                      </td>
+                      <td  class="jat-column2">
+                         <div class="j-grade-star">
+                              <span class="jg-star s4"></span>
+                         </div>
+                      </td>
+                      <td  class="jat-column3">
+                         <div class="j-user-infor">
+                            <span class="ju-name">太***雨</span><i>|</i><span class="ju-date">2015-01-20 17:02:20</span>
+                         </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="jat-column1">
+                         <div class="j-p-comments">
+                            <span class="j-paragra-same">手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。</span>
+                         </div>
+                      </td>
+                      <td  class="jat-column2">
+                         <div class="j-grade-star">
+                              <span class="jg-star s4"></span>
+                         </div>
+                      </td>
+                      <td  class="jat-column3">
+                         <div class="j-user-infor">
+                            <span class="ju-name">太***雨</span><i>|</i><span class="ju-date">2015-01-20 17:02:20</span>
+                         </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="jat-column1">
+                         <div class="j-p-comments">
+                           <span class="j-paragra-same">手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮,外观漂亮。手机很好，外观漂亮。</span>
+                         </div>
+                      </td>
+                      <td  class="jat-column2">
+                         <div class="j-grade-star">
+                              <span class="jg-star s4"></span>
+                         </div>
+                      </td>
+                      <td  class="jat-column3">
+                         <div class="j-user-infor">
+                            <span class="ju-name">太***雨</span><i>|</i><span class="ju-date">2015-01-20 17:02:20</span>
+                         </div>
+                      </td>
+                  </tr>
+             </table>     
+         </div> <!-- //j-analysis-cont end -->  
+         <div class="j-analysis-cont">
+             <table class="j-acount-table" cellpadding="0" cellspacing="0">
+                  <tr>
+                      <td class="jat-column1">
+                         <div class="j-p-comments">
+                            <span class="j-paragra-same"><b class="j-highlight">手机性价比高</b>，外观漂亮。</span>
+                         </div>
+                      </td>
+                      <td  class="jat-column2">
+                         <div class="j-grade-star">
+                              <span class="jg-star s4"></span>
+                         </div>
+                      </td>
+                      <td  class="jat-column3">
+                         <div class="j-user-infor">
+                            <span class="ju-name">太***雨</span><i>|</i><span class="ju-date">2015-01-20 17:02:20</span>
+                         </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="jat-column1">
+                         <div class="j-p-comments">
+                            <span class="j-paragra-same">手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。</span>
+                         </div>
+                      </td>
+                      <td  class="jat-column2">
+                         <div class="j-grade-star">
+                              <span class="jg-star s4"></span>
+                         </div>
+                      </td>
+                      <td  class="jat-column3">
+                         <div class="j-user-infor">
+                            <span class="ju-name">太***雨</span><i>|</i><span class="ju-date">2015-01-20 17:02:20</span>
+                         </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="jat-column1">
+                         <div class="j-p-comments">
+                           <span class="j-paragra-same">手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮,外观漂亮。手机很好，外观漂亮。</span>
+                         </div>
+                      </td>
+                      <td  class="jat-column2">
+                         <div class="j-grade-star">
+                              <span class="jg-star s4"></span>
+                         </div>
+                      </td>
+                      <td  class="jat-column3">
+                         <div class="j-user-infor">
+                            <span class="ju-name">太***雨</span><i>|</i><span class="ju-date">2015-01-20 17:02:20</span>
+                         </div>
+                      </td>
+                  </tr>
+             </table>     
+         </div> <!-- //j-analysis-cont end -->  
+         <div class="j-analysis-cont">
+             <table class="j-acount-table" cellpadding="0" cellspacing="0">
+                  <tr>
+                      <td class="jat-column1">
+                         <div class="j-p-comments">
+                            <span class="j-paragra-same"><b class="j-highlight">性能很好</b>，外观漂亮。</span>
+                         </div>
+                      </td>
+                      <td  class="jat-column2">
+                         <div class="j-grade-star">
+                              <span class="jg-star s4"></span>
+                         </div>
+                      </td>
+                      <td  class="jat-column3">
+                         <div class="j-user-infor">
+                            <span class="ju-name">太***雨</span><i>|</i><span class="ju-date">2015-01-20 17:02:20</span>
+                         </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="jat-column1">
+                         <div class="j-p-comments">
+                            <span class="j-paragra-same">手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。</span>
+                         </div>
+                      </td>
+                      <td  class="jat-column2">
+                         <div class="j-grade-star">
+                              <span class="jg-star s4"></span>
+                         </div>
+                      </td>
+                      <td  class="jat-column3">
+                         <div class="j-user-infor">
+                            <span class="ju-name">太***雨</span><i>|</i><span class="ju-date">2015-01-20 17:02:20</span>
+                         </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="jat-column1">
+                         <div class="j-p-comments">
+                           <span class="j-paragra-same">手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮,外观漂亮。手机很好，外观漂亮。</span>
+                         </div>
+                      </td>
+                      <td  class="jat-column2">
+                         <div class="j-grade-star">
+                              <span class="jg-star s4"></span>
+                         </div>
+                      </td>
+                      <td  class="jat-column3">
+                         <div class="j-user-infor">
+                            <span class="ju-name">太***雨</span><i>|</i><span class="ju-date">2015-01-20 17:02:20</span>
+                         </div>
+                      </td>
+                  </tr>
+             </table>     
+         </div> <!-- //j-analysis-cont end -->    
+         <div class="j-analysis-cont">
+             <table class="j-acount-table" cellpadding="0" cellspacing="0">
+                  <tr>
+                      <td class="jat-column1">
+                         <div class="j-p-comments">
+                            <span class="j-paragra-same"><b class="j-highlight">电量持久</b>，外观漂亮。</span>
+                         </div>
+                      </td>
+                      <td  class="jat-column2">
+                         <div class="j-grade-star">
+                              <span class="jg-star s4"></span>
+                         </div>
+                      </td>
+                      <td  class="jat-column3">
+                         <div class="j-user-infor">
+                            <span class="ju-name">太***雨</span><i>|</i><span class="ju-date">2015-01-20 17:02:20</span>
+                         </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="jat-column1">
+                         <div class="j-p-comments">
+                            <span class="j-paragra-same">手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。</span>
+                         </div>
+                      </td>
+                      <td  class="jat-column2">
+                         <div class="j-grade-star">
+                              <span class="jg-star s4"></span>
+                         </div>
+                      </td>
+                      <td  class="jat-column3">
+                         <div class="j-user-infor">
+                            <span class="ju-name">太***雨</span><i>|</i><span class="ju-date">2015-01-20 17:02:20</span>
+                         </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="jat-column1">
+                         <div class="j-p-comments">
+                           <span class="j-paragra-same">手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮。手机很好，外观漂亮,外观漂亮。手机很好，外观漂亮。</span>
+                         </div>
+                      </td>
+                      <td  class="jat-column2">
+                         <div class="j-grade-star">
+                              <span class="jg-star s4"></span>
+                         </div>
+                      </td>
+                      <td  class="jat-column3">
+                         <div class="j-user-infor">
+                            <span class="ju-name">太***雨</span><i>|</i><span class="ju-date">2015-01-20 17:02:20</span>
+                         </div>
+                      </td>
+                  </tr>
+             </table>     
+         </div> <!-- //j-analysis-cont end -->     
     </div>
+</div>
 <script src="../../res/js/jquery-1.11.3.min.js"></script>
 <script>
     ;(function(){
         $.fn.extend({
             tabPlugin:function(options){
                 var defaults ={
-                    initDom:'.tab_box',
-                    tabTrigger: 'click', // or'hover'
+                    tabItem:'.j-ans-kinds li',
+                    tabCon:'.j-analysis-cont',
+                    curClassName:'current',
+                    tabTrigger: 'click', // or'mouseover'
                     callBack:function(){} //callback
                 };
                 
@@ -65,27 +418,23 @@
 
                 this.each(function() {
                     var _this = $(this),
-                        _tab = _this.find('.tab_item'),
-                        _tabCur = _this.find('.tab_item.cur'),
-                        _tabCon = _this.find('.tab_con'),
+                        _tab = _this.find(options.tabItem),
+                        _tabCur = _this.find(options.tabItem+'.'+options.curClassName),
+                        _tabCon = _this.find(options.tabCon),
                         _curIndex = _tabCur.index();
 
                     var S = {
                         init:function(){
-                            _tabCon.eq(_curIndex).show().siblings('.tab_con').hide();
-                            if(options.tabTrigger == 'click'){
-                                _tab.unbind().bind('click',S.tab);
-                            }else if(options.tabTrigger == 'hover'){
-                                _tab.unbind().bind('mouseover',S.tab);
-                            }
+                            _tabCon.eq(_curIndex).show().siblings(options.tabCon).hide();
+                            _tab.unbind().bind(options.tabTrigger,S.tab);
                         },
                         tab:function(){
-                            if($(this).hasClass('cur')){
+                            if($(this).hasClass(options.curClassName)){
                                 return false;
                             }
                             var index = $(this).index();
-                            $(this).addClass('cur').siblings('.tab_item').removeClass('cur');
-                            _tabCon.eq(index).show().siblings('.tab_con').hide();
+                            $(this).addClass(options.curClassName).siblings(options.tabItem).removeClass(options.curClassName);
+                            _tabCon.eq(index).show().siblings(options.tabCon).hide();
                             options.callBack();
                         }
                     }
@@ -95,8 +444,9 @@
             }
         });
     })(jQuery)
-    $('.tab_box1').tabPlugin({ tabTrigger:'hover' });
-    $('.tab_box2').tabPlugin({ tabTrigger:'click' });
+    $('.j-comment-analysis').tabPlugin({
+         tabTrigger:'click'
+    });
 </script>  
 </body>
 </html>

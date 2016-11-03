@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo code - 阻止滚动事件冒泡 stopPropagation </title>
+	<style type="text/css">
+      *{padding: 0; margin: 0px; font-family:microsoft yahei; font-size: 13px; }
+      .box {
+        width: 500px;
+  	    height: 300px;
+  	    background: green;
+        color: #fff;
+        overflow: scroll;
+           -webkit-overflow-scrolling: touch;
+		}
+	</style>
+</head>
+<body>
+
+     <ul>
+          <li class="item">占位符占位1</li>
+          <li class="item">占位符占位2</li>
+          <li class="item">占位符占位3</li>
+          <li class="item">占位符占位4</li>
+          <li class="item">占位符占位5</li>
+          <li class="item">占位符占位6</li>
+          <li class="item">占位符占位7</li>
+          <li class="item">占位符占位8</li>
+          <li class="item">占位符占位9</li>
+          <li class="item">占位符占位1</li>
+          <li class="item">占位符占位2</li>
+          <li class="item">占位符占位3</li>
+          <li class="item">占位符占位4</li>
+          <li class="item">占位符占位5</li>
+          <li class="item">占位符占位6</li>
+          <li class="item">占位符占位7</li>
+          <li class="item">占位符占位8</li>
+          <li class="item">占位符占位9</li>
+          <li class="item">占位符占位1</li>
+          <li class="item">占位符占位2</li>
+          <li class="item">占位符占位3</li>
+          <li class="item">占位符占位4</li>
+          <li class="item">占位符占位5</li>
+          <li class="item">占位符占位6</li>
+          <li class="item">占位符占位7</li>
+          <li class="item">占位符占位8</li>
+          <li class="item">占位符占位9</li>
+   </ul>
+    <ul class="box">
+         <li class="item">占位符占位1</li>
+         <li class="item">占位符占位2</li>
+         <li class="item">占位符占位3</li>
+         <li class="item">占位符占位4</li>
+         <li class="item">占位符占位5</li>
+         <li class="item">占位符占位6</li>
+         <li class="item">占位符占位7</li>
+         <li class="item">占位符占位8</li>
+         <li class="item">占位符占位9</li>
+         <li class="item">占位符占位1</li>
+         <li class="item">占位符占位2</li>
+         <li class="item">占位符占位3</li>
+         <li class="item">占位符占位4</li>
+         <li class="item">占位符占位5</li>
+         <li class="item">占位符占位6</li>
+         <li class="item">占位符占位7</li>
+         <li class="item">占位符占位8</li>
+         <li class="item">占位符占位9</li>
+         <li class="item">占位符占位1</li>
+         <li class="item">占位符占位2</li>
+         <li class="item">占位符占位3</li>
+         <li class="item">占位符占位4</li>
+         <li class="item">占位符占位5</li>
+         <li class="item">占位符占位6</li>
+         <li class="item">占位符占位7</li>
+         <li class="item">占位符占位8</li>
+         <li class="item">占位符占位9</li>
+         <li class="item">占位符占位1</li>
+         <li class="item">占位符占位2</li>
+         <li class="item">占位符占位3</li>
+         <li class="item">占位符占位4</li>
+         <li class="item">占位符占位5</li>
+         <li class="item">占位符占位6</li>
+         <li class="item">占位符占位7</li>
+         <li class="item">占位符占位8</li>
+         <li class="item">占位符占位9</li>
+    </ul>
+    
+   <ul>
+        <li class="item">占位符占位1</li>
+        <li class="item">占位符占位2</li>
+        <li class="item">占位符占位3</li>
+        <li class="item">占位符占位4</li>
+        <li class="item">占位符占位5</li>
+        <li class="item">占位符占位6</li>
+        <li class="item">占位符占位7</li>
+        <li class="item">占位符占位8</li>
+        <li class="item">占位符占位9</li>
+        <li class="item">占位符占位1</li>
+        <li class="item">占位符占位2</li>
+        <li class="item">占位符占位3</li>
+        <li class="item">占位符占位4</li>
+        <li class="item">占位符占位5</li>
+        <li class="item">占位符占位6</li>
+        <li class="item">占位符占位7</li>
+        <li class="item">占位符占位8</li>
+        <li class="item">占位符占位9</li>
+        <li class="item">占位符占位1</li>
+        <li class="item">占位符占位2</li>
+        <li class="item">占位符占位3</li>
+        <li class="item">占位符占位4</li>
+        <li class="item">占位符占位5</li>
+        <li class="item">占位符占位6</li>
+        <li class="item">占位符占位7</li>
+        <li class="item">占位符占位8</li>
+        <li class="item">占位符占位9</li>
+        <li class="item">占位符占位1</li>
+        <li class="item">占位符占位2</li>
+        <li class="item">占位符占位3</li>
+        <li class="item">占位符占位4</li>
+        <li class="item">占位符占位5</li>
+        <li class="item">占位符占位6</li>
+        <li class="item">占位符占位7</li>
+        <li class="item">占位符占位8</li>
+        <li class="item">占位符占位9</li>
+        <li class="item">占位符占位1</li>
+        <li class="item">占位符占位2</li>
+        <li class="item">占位符占位3</li>
+        <li class="item">占位符占位4</li>
+        <li class="item">占位符占位5</li>
+        <li class="item">占位符占位6</li>
+        <li class="item">占位符占位7</li>
+        <li class="item">占位符占位8</li>
+        <li class="item">占位符占位9</li>
+        <li class="item">占位符占位1</li>
+        <li class="item">占位符占位2</li>
+        <li class="item">占位符占位3</li>
+        <li class="item">占位符占位4</li>
+        <li class="item">占位符占位5</li>
+        <li class="item">占位符占位6</li>
+        <li class="item">占位符占位7</li>
+        <li class="item">占位符占位8</li>
+        <li class="item">占位符占位9</li>
+        <li class="item">占位符占位1</li>
+        <li class="item">占位符占位2</li>
+        <li class="item">占位符占位3</li>
+        <li class="item">占位符占位4</li>
+        <li class="item">占位符占位5</li>
+        <li class="item">占位符占位6</li>
+        <li class="item">占位符占位7</li>
+        <li class="item">占位符占位8</li>
+        <li class="item">占位符占位9</li>
+        <li class="item">占位符占位1</li>
+        <li class="item">占位符占位2</li>
+        <li class="item">占位符占位3</li>
+        <li class="item">占位符占位4</li>
+        <li class="item">占位符占位5</li>
+        <li class="item">占位符占位6</li>
+        <li class="item">占位符占位7</li>
+        <li class="item">占位符占位8</li>
+        <li class="item">占位符占位9</li>
+        <li class="item">占位符占位1</li>
+        <li class="item">占位符占位2</li>
+        <li class="item">占位符占位3</li>
+        <li class="item">占位符占位4</li>
+        <li class="item">占位符占位5</li>
+        <li class="item">占位符占位6</li>
+        <li class="item">占位符占位7</li>
+        <li class="item">占位符占位8</li>
+        <li class="item">占位符占位9</li>
+   </ul>
+
+</body>
+  <script src="../../res/js/jquery-1.11.3.min.js"></script>
+<script>
+	
+  $.fn.extend({  
+      preventScroll:function(){  
+          $(this).each(function(){  
+              var _this = this;  
+              if(navigator.userAgent.indexOf('Firefox') >= 0){   //firefox  
+                  _this.addEventListener('DOMMouseScroll',function(e){  
+                      _this.scrollTop += e.detail > 0 ? 60 : -60;
+                      e.preventDefault();  
+                  },false);   
+              }else{  
+                  _this.onmousewheel = function(e){     
+                      e = e || window.event;     
+                      _this.scrollTop += e.wheelDelta > 0 ? -60 : 60;     
+                      return false;  
+                  };  
+              }  
+          })    
+      }  
+});  
+$(".box").preventScroll();  
+
+</script>
+
+</html>
