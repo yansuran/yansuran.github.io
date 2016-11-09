@@ -192,9 +192,21 @@
 
                     <pre><code data-language="javascript">
      $(".select-date-A").scrollPlugin({
-          showItem:8, //展示的个数
-          speed:200, //滚动速度
-          callBack:function(){} //回调
+          prevClassName:'.left-Arrowbtn', // 上一页按钮
+          nextClassName:'.right-Arrowbtn', // 下一页按钮
+          disableStyle:{  // 翻页按钮不可样式
+             'opacity': '.3' ,
+             'cursor':'default'
+          },
+          slideClassName:'.s-items-ul', // 列表外层容器
+          distance: 'single', // 单个滚动/整屏滚动  [single , screen]
+          showItem:8, // 展示的个数
+          speed:400, // 滚动速度
+          callBack:function(){
+               $('li' , $(".select-date-A")).unbind('click').bind('click' , function(){
+                     $(this).addClass('current').siblings().removeClass('current');
+               });
+          }
      });
                     </code></pre>
                       </div>
