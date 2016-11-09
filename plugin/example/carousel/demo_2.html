@@ -20,12 +20,20 @@
 		.select-date-model .sel-scroll-box .s-items-ul li{ float:left; width:84px; height:30px; padding:0px 14px; }
 		.select-date-model .sel-scroll-box .s-items-ul li a{ display:inline-block; width:84px; height:30px; line-height:30px; text-align:center; font-family:aril,"microsoft yahei", sans-serif; color:#666; font-size:12px;}
 		.select-date-model .sel-scroll-box .s-items-ul li.current a{ background-color:#d5edf9;}
+
+
+        .slideBox{ position: relative;  width: 600px; height: 120px; margin: 20px 0; overflow: hidden; }
+        .slideUl{ width: 2000%; height: 120px; }
+        .slideBox .controlBtn{ position: absolute; top: 45%; display:inline-block; width: 10px;height: 20px;
+             background-color: #bbb; color:#fff;font-family: SimSun; font-size: 16px; font-weight: bold;}
+        .slideBox .next{ right:0;}
+        .slideUl li{ float: left; width: 80px; height: 120px; margin: 0px 10px; line-height: 120px; text-align: center;
+             background: #f0f0f0; box-shadow: 0px 0px 6px #ccc; font-family: tomaha; font-size: 18px; font-weight: bold;}
+
    </style>
   <body  style="margin: 50px; background-color: #fafafa;">
 
   <h4 style=" margin:20px 0px;font-family:'Microsoft Yahei', 'Georgia'; font-size: 15px;  ">点击滚动scroll组件</h4>
-
-
   <div class="select-date-model select-date-A">
          <a class="Arrowbtn left-Arrowbtn" href="javascript:;"></a>           
          <a class="Arrowbtn right-Arrowbtn" href="javascript:;"></a> 
@@ -45,105 +53,202 @@
                 <li><a href="javascript:;">2015-07-26</a></li>
              </ul>
          </div>          
-    </div> 
-     
-<br>
+    </div>
+
+  <h4 style=" width: 600px; margin:40px 0 0;font-family:'Microsoft Yahei', 'Georgia'; font-size: 15px; ">滚动单个item</h4>
+  <div class="slideBox slideBox_single">
+       <a class="controlBtn prev"  href="javascript:;"><</a>
+       <a class="controlBtn next" href="javascript:;">></a>
+       <ul class="slideUl clearfix">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+            <li>11</li>
+            <li>12</li>
+            <li>13</li>
+       </ul>
+  </div>
+
+  <h4 style=" width: 600px; margin:40px 0 0;font-family:'Microsoft Yahei', 'Georgia'; font-size: 15px;">滚动整屏 (不满一屏不留白)</h4>
+  <div class="slideBox slideBox_screen">
+       <a class="controlBtn prev"  href="javascript:;"><</a>
+       <a class="controlBtn next" href="javascript:;">></a>
+       <ul class="slideUl clearfix">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+            <li>11</li>
+            <li>12</li>
+            <li>13</li>
+            <li>14</li>
+            <li>15</li>
+            <li>16</li>
+            <li>17</li>
+            <li>18</li>
+            <li>19</li>
+            <li>20</li>
+       </ul>
+  </div>
+
+
+  <br>
 <br>
 
-    <div class="select-date-model select-date-B">
-         <a class="Arrowbtn left-Arrowbtn" href="javascript:;"></a>           
-         <a class="Arrowbtn right-Arrowbtn" href="javascript:;"></a> 
-         <div class="sel-scroll-box">
-             <ul class="s-items-ul clearfix">
-                <li class="current"><a href="javascript:;">2015-07-16</a></li>
-                <li><a href="javascript:;">2015-07-17</a></li>
-                <li><a href="javascript:;">2015-07-18</a></li>
-                <li><a href="javascript:;">2015-07-18</a></li>
-                <li><a href="javascript:;">2015-07-19</a></li>
-                <li><a href="javascript:;">2015-07-20</a></li>
-                <li><a href="javascript:;">2015-07-21</a></li>
-                <li><a href="javascript:;">2015-07-22</a></li>
-                <li><a href="javascript:;">2015-07-23</a></li>
-                <li><a href="javascript:;">2015-07-24</a></li>
-                <li><a href="javascript:;">2015-07-25</a></li>
-                <li><a href="javascript:;">2015-07-26</a></li>
-             </ul>
-         </div>          
-    </div>  
-    
+
     
     
   </body>
-<script src="../../res/js/jquery-1.11.3.min.js"></script>
+  <script src="../../res/js/jquery-1.11.3.min.js"></script>
   <script>
-	;(function($){
-		 $.fn.extend({
-		     scrollPlugin:function(options){
-				var defaults = {
-					showItem:8, //展示的个数
-					speed:200, //滚动速度
-					callBack:function(){}
-				};
-                var options  = $.extend(true,defaults,options);
-				this.each(function(){
-					var _this = $(this),
-					    _leftArrow = $('.left-Arrowbtn' , _this),
-					    _rightArrow = $('.right-Arrowbtn' , _this),
-					    _srcoolBox = $('.s-items-ul' , _this),
-						_itemWidth= _srcoolBox.find('li').outerWidth(),
-						_itemLength= _srcoolBox.find('li').length,
-						_scrollItem=_itemLength-options.showItem,  //滚动的个数
-						_index = 0 ;
-						
-				    var S ={
-						init:function(){
-						  _srcoolBox.css({width :  _itemWidth*_itemLength }); //重置滚动容器ul宽度
-						  _leftArrow.unbind('click').bind('click' , S.rightScroll);
-						  _rightArrow.unbind('click').bind('click' , S.leftScroll);
-						  options.callBack();
-						  
-						},
-						leftScroll:function(){
-						   _index +=1;
-						   _index == _scrollItem+1 ? _index = _scrollItem :'';
-						   S.showPlay(_index);
-						  
-						},
-						rightScroll:function(){
-						   _index -=1;
-						   _index == -1 ? _index = _index = 0 :'';
-						   S.showPlay(_index);
-						},
-						showPlay:function(_index){
-						   _srcoolBox.stop(true,false).animate({marginLeft:-_index*_itemWidth},options.speed);	
-						}
-					};
-					S.init();
-				});
-				return this;
-			 } 
-		 })  
-	})(jQuery);
-	
-	$(".select-date-A").scrollPlugin({
-		speed:100,
-		callBack:function(){
-		  $('li' , $(".select-date-A")).unbind('click').bind('click' , function(){
-			   $(this).addClass('current').siblings().removeClass('current');
-		  });
-		} 
-    });
-	$(".select-date-B").scrollPlugin({
-		speed:250,
-		callBack:function(){
-		  $('li' , $(".select-date-B")).unbind('click').bind('click' , function(){
-			   $(this).addClass('current').siblings().removeClass('current');
-		  });
-		} 
-    });
-	
-	
-	
-	
+       ;(function($){
+            $.fn.extend({
+                 scrollPlugin:function(options){
+                      var defaults = {
+                           prevClassName:'.prev', // 上一页按钮
+                           nextClassName:'.next', // 下一页按钮
+                           disableStyle:{'opacity': '.2' , 'cursor':'default'}, // 翻页按钮不可用
+                           slideClassName:'.slideUl', // 列表外层容器
+                           distance: 'screen', // 滚动距离 [single , screen]
+                           showItem:6, // 展示的个数
+                           speed:200, // 滚动速度
+                           callBack:function(){}
+                      };
+                      var options  = $.extend(true,defaults,options);
+                      this.each(function(){
+
+                           var _this = $(this),
+                                _leftArrow = $(options.prevClassName , _this),
+                                _rightArrow = $(options.nextClassName , _this),
+                                _scrollBox = $(options.slideClassName , _this),
+                                _itemLength = _scrollBox.find('li').length,// 类目个数
+                                _singleWidth =  _scrollBox.find('li').outerWidth(true), //单个宽度
+                                _itemWidth,  // 滚动宽度
+                                _scrollItem, // 滚动个数
+                                _index = 0 ;
+
+                           switch (options.distance) {
+                                case 'single': // 单个滚动
+                                     _itemWidth= _singleWidth;
+                                     _scrollItem=_itemLength-options.showItem ;
+                                     break;
+                                case 'screen': // 整屏滚动
+                                     _itemWidth=_singleWidth*options.showItem;
+                                     _scrollItem= Math.ceil(_itemLength/options.showItem) -1 ; // 向上取整
+                                     break;
+                           }
+
+                           if(_scrollItem<=0) { _leftArrow.hide() ; _rightArrow.hide() ;  return false };
+
+                           var S ={
+                                init:function(){
+                                     _scrollBox.css({width : _singleWidth*_itemLength }); //重置滚动容器ul宽度
+                                     _leftArrow.css(options.disableStyle).unbind('click').bind('click' , S.rightScroll);
+                                     _rightArrow.unbind('click').bind('click' , S.leftScroll);
+                                     options.callBack();
+                                     // console.log('init:'+_index);
+
+                                },
+                                leftScroll:function(){
+                                     _index +=1;
+                                     _index == _scrollItem+1 ? _index = _scrollItem :'';
+
+                                     if(_index == _scrollItem){
+                                          _rightArrow.css(options.disableStyle);
+                                          _scrollBox.stop(true,false)
+                                               .animate({
+                                                    marginLeft:-(_itemLength-options.showItem)*_singleWidth
+                                               }, options.speed);
+                                     }else{
+                                          S.showPlay('-');
+                                     }
+                                    _leftArrow[0].removeAttribute('style');
+                                     /*console.log('_index:'+_index);
+                                      console.log('_scrollItem:'+_scrollItem);*/
+                                },
+                                rightScroll:function(){
+                                     _index -=1;
+                                     _index == -1 ?  _index = 0 :'';
+
+                                     //(_index == 0)&&(_leftArrow.css('opacity' , '.2'));
+                                     if(_index == 0){
+                                          _leftArrow.css(options.disableStyle);
+                                          _scrollBox.stop(true,false)
+                                               .animate({
+                                                    marginLeft:0
+                                               }, options.speed);
+                                     }else{
+                                          S.showPlay('+');
+                                     }
+                                   _rightArrow[0].removeAttribute('style');
+                                },
+                                /* showPlay:function(_index){
+                                 _scrollBox.stop(true,false).animate({marginLeft:-_index*_itemWidth},options.speed);
+                                 }*/
+                                showPlay:function(s){
+                                     _scrollBox.stop(true,false).animate({marginLeft:''+s+'='+_itemWidth},options.speed);
+                                }
+                           };
+                           S.init();
+                      });
+                      return this;
+                 }
+            })
+       })(jQuery);
+
+
+       $(".select-date-A").scrollPlugin({
+            prevClassName:'.left-Arrowbtn', // 上一页按钮
+            nextClassName:'.right-Arrowbtn', // 下一页按钮
+            disableStyle:{'opacity': '.3' , 'cursor':'default'}, // 翻页按钮不可用
+            slideClassName:'.s-items-ul', // 列表外层容器
+            distance: 'single', // 单个滚动/整屏滚动  [single , screen]
+            showItem:8, // 展示的个数
+            speed:400, // 滚动速度
+             callBack:function(){
+               $('li' , $(".select-date-A")).unbind('click').bind('click' , function(){
+                    $(this).addClass('current').siblings().removeClass('current');
+               });
+             }
+       });
+
+
+       $('.slideBox_single').scrollPlugin({
+            prevClassName:'.prev', // 上一页按钮
+            nextClassName:'.next', // 下一页按钮
+            slideClassName:'.slideUl', // 列表外层容器
+            distance: 'single', // 单个滚动/整屏滚动  [single , screen]
+            showItem:6, // 展示的个数
+            speed:200, // 滚动速度
+            callBack:function(){}
+       });
+
+       $('.slideBox_screen').scrollPlugin({
+            prevClassName:'.prev', // 上一页按钮
+            nextClassName:'.next', // 下一页按钮
+            slideClassName:'.slideUl', // 列表外层容器
+            distance: 'screen', // 单个滚动/整屏滚动  [single , screen]
+            showItem:6, // 展示的个数
+            speed:400 // 滚动速度
+       });
+
+
+
+
+
+
   </script>
 </html>
