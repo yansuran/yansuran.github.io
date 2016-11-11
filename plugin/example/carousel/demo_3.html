@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-	<title>shopping Cart</title>
+	<title>点击滚动 组件 - 未精简版</title>
     <link rel="stylesheet" href="css/base.css" >
     <style>
         .slideBox{ position: relative;  width: 600px; height: 120px; padding: 0px 0px 30px; margin: 20px auto; overflow: hidden; }
@@ -16,7 +16,7 @@
         .view_dot{position:absolute; bottom:10px; z-index:22; width: 100%; height: 20px; margin: 0 auto; text-align: center;}
         .view_dot span{ display: inline-block; width: 10px; height: 10px; margin:5px; text-align: center; background-color: #ddd;
             cursor: pointer; border-radius: 20px;  -webkit-transition: all 0.4s ease-in; transition: all 0.4s ease-in;}
-        .view_dot span.cur{ width: 20px; background-color: #ff8666; }
+        .view_dot span.cur{ width: 20px; background-color: #ff8666;}
 
 
     </style>
@@ -148,115 +148,157 @@
                             _scrollBox.css({width : _singleWidth*_itemLength }); //重置滚动容器ul宽度
                             _leftArrow.css(options.disableStyle).unbind('click').bind('click' , S.rightScroll);
                             _rightArrow.unbind('click').bind('click' , S.leftScroll);
+                             S.dotViewEvent();
                              options.callBack();
                            // console.log('init:'+_index);
 
-                            if(options.viewDot == 'dot'){
-                                //console.log(_scrollItem)
-                                var _dotNav = '<div class="view_dot"><span class="cur"></span>';
-                                for(var i =0 ; i<_scrollItem ; i++){
-                                    _dotNav += '<span></span>'
-                                };
-                                _dotNav += '</div>';
-                                _this.append(_dotNav);
-
-
-                                //var _oldIndex = _index; //旧的_index
-
-                                _dotBox = _this.find('.view_dot').children('span');
-                                _dotBox.unbind('click').bind('click' , function(){
-                                     var _thisDot = $(this),
-                                         _oldIndex = _this.find('.cur').index(); //上一次 highlight 页数
-                                     _index = _thisDot.index();
-                                     _thisDot.addClass('cur').siblings().removeClass('cur');
-
-
-                                    //console.log('点击事件'+_index);
-
-                                    if(_index == _scrollItem){
-                                         _rightArrow.css(options.disableStyle);
-                                         _leftArrow[0].removeAttribute('style');
-                                         _scrollBox.stop(true,false)
-                                                 .animate({
-                                                     marginLeft:-(_itemLength-options.showItem)*_singleWidth
-                                                 }, options.speed);
-                                     }else if(_index == 0){
-                                         _leftArrow.css(options.disableStyle);
-                                         _rightArrow[0].removeAttribute('style');
-                                         _scrollBox.stop(true,false)
-                                                 .animate({
-                                                     marginLeft:0
-                                                 }, options.speed);
-                                     }else{
-                                        /* S.toPage(_index); */
-                                        _rightArrow[0].removeAttribute('style');
-                                        _leftArrow[0].removeAttribute('style');
-                                        _index > _oldIndex ? S.showPlay('-') : S.showPlay('+') ;
-                                     }
-                                });
-
-                            };
 
                         },
                         leftScroll:function(){
                             _index +=1;
                             _index == _scrollItem+1 ? _index = _scrollItem :'';
 
-                            //console.log('右击'+_index);
+                            console.log('右击'+_index);
 
                             if(_index == _scrollItem){
                                // alert('last');
 
-                                _rightArrow.css(options.disableStyle);
-                                _scrollBox.stop(true,false)
+                               /* _rightArrow.css(options.disableStyle);
+                                _scrollBox.stop(true, true)
                                     .animate({
                                         marginLeft:-(_itemLength-options.showItem)*_singleWidth
-                                    }, options.speed);
+                                    }, options.speed);*/
+                                S.toLastPage();
                             }else{
-                                S.showPlay('-');
+                                S.showPlay('-' , _itemWidth);
                             }
                              _leftArrow[0].removeAttribute('style');
 
                             /*console.log('_index:'+_index);
                             console.log('_scrollItem:'+_scrollItem);*/
-                            if(options.viewDot == 'dot'){
+                            /*if(options.viewDot == 'dot'){
                                 _dotBox = _this.find('.view_dot').children('span');
                                 _dotBox.eq(_index).addClass('cur').siblings().removeClass('cur');
-                            }
+                            }*/
+                            S.dotHighlight();
 
                         },
                         rightScroll:function(){
                             _index -=1;
                             _index == -1 ?  _index = 0 :'';
 
-                            //console.log('左击'+_index);
+                            console.log('左击'+_index);
                             //(_index == 0)&&(_leftArrow.css('opacity' , '.2'));
                             if(_index == 0){
                                // alert('first');
 
-                                _leftArrow.css(options.disableStyle);
-                                _scrollBox.stop(true,false)
+                               /* _leftArrow.css(options.disableStyle);
+                                _scrollBox.stop(true, true)
                                     .animate({
                                         marginLeft:0
-                                    }, options.speed);
+                                    }, options.speed);*/
+                                S.toFirstPage();
                             }else{
-                                S.showPlay('+');
+                                S.showPlay('+',_itemWidth);
                             }
                             _rightArrow[0].removeAttribute('style');
 
                             /*console.log('_index:'+_index);
                              console.log('_scrollItem:'+_scrollItem);*/
-                            if(options.viewDot == 'dot'){
+                            /*if(options.viewDot == 'dot'){
                                 _dotBox = _this.find('.view_dot').children('span');
                                 _dotBox.eq(_index).addClass('cur').siblings().removeClass('cur');
-                            }
+                            }*/
+                            S.dotHighlight();
 
                         },
                         /*toPage:function(_index){
                             _scrollBox.stop(true,false).animate({marginLeft:-_index*_itemWidth},options.speed);
                         },*/
-                        showPlay:function(s){
-                            _scrollBox.stop(true,false).animate({marginLeft:''+s+'='+_itemWidth},options.speed);
+                        showPlay:function(s,n){
+                            _scrollBox.stop(true, true).animate({marginLeft:''+s+'='+n},options.speed);
+                        },
+                        toLastPage:function(){
+                            _rightArrow.css(options.disableStyle);
+                            _leftArrow[0].removeAttribute('style');
+                            _scrollBox.stop(true, true)
+                                    .animate({
+                                        marginLeft:-(_itemLength-options.showItem)*_singleWidth
+                                    }, options.speed);
+                        },
+                        toFirstPage:function(){
+                            _leftArrow.css(options.disableStyle);
+                            _rightArrow[0].removeAttribute('style');
+                            _scrollBox.stop(true, true)
+                                    .animate({
+                                        marginLeft:0
+                                    }, options.speed);
+                        },
+                        renderDotView:function(){
+                            var _dotNav = '<div class="view_dot"><span class="cur"></span>';
+                            for(var i =0 ; i<_scrollItem ; i++){
+                                _dotNav += '<span></span>'
+                            };
+                            _dotNav += '</div>';
+                            _this.append(_dotNav);
+                        },
+                        dotViewEvent:function(){
+                            if(options.viewDot == 'dot'){
+                                //console.log(_scrollItem)
+                                /*var _dotNav = '<div class="view_dot"><span class="cur"></span>';
+                                 for(var i =0 ; i<_scrollItem ; i++){
+                                 _dotNav += '<span></span>'
+                                 };
+                                 _dotNav += '</div>';
+                                 _this.append(_dotNav);*/
+                                S.renderDotView();
+
+                                //var _oldIndex = _index; //旧的_index
+
+                                _dotBox = _this.find('.view_dot').children('span');
+
+                                _dotBox.unbind('click').bind('click' , function(){
+                                    var _thisDot = $(this),
+                                            _oldIndex = _this.find('.cur').index(); //上一次 highlight 页数
+                                    _index = _thisDot.index();
+                                    _thisDot.addClass('cur').siblings().removeClass('cur');
+
+
+                                    console.log('点击DOT事件'+_index);
+
+                                    if(_index == _scrollItem){
+                                        /*_rightArrow.css(options.disableStyle);
+                                         _leftArrow[0].removeAttribute('style');
+                                         _scrollBox.stop(true, true)
+                                         .animate({
+                                         marginLeft:-(_itemLength-options.showItem)*_singleWidth
+                                         }, options.speed);*/
+                                        S.toLastPage();
+                                    }else if(_index == 0){
+                                        /*_leftArrow.css(options.disableStyle);
+                                         _rightArrow[0].removeAttribute('style');
+                                         _scrollBox.stop(true, true)
+                                         .animate({
+                                         marginLeft:0
+                                         }, options.speed);*/
+                                        S.toFirstPage();
+                                    }else{
+                                        /* S.toPage(_index); */
+                                        _rightArrow[0].removeAttribute('style');
+                                        _leftArrow[0].removeAttribute('style');
+                                        _index > _oldIndex ?
+                                            S.showPlay('-' ,(_index-_oldIndex)*_itemWidth) : S.showPlay('+' ,(_oldIndex-_index)*_itemWidth) ;
+                                    }
+                                });
+
+                            };
+
+                        },
+                        dotHighlight:function(){
+                            if(options.viewDot == 'dot'){
+                                _dotBox = _this.find('.view_dot').children('span');
+                                _dotBox.eq(_index).addClass('cur').siblings().removeClass('cur');
+                            }
                         }
                     };
                     S.init();
