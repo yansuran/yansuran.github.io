@@ -11,7 +11,7 @@
                        _tips = _this.attr('data-tip');
                    _this.addClass('cur').siblings().removeClass('cur');
                    if( _tips !== undefined){
-                       _yJsList.show().find('li[data-tip='+_tips+']').fadeIn().siblings().hide();
+                       _yJsList.show().find('li[data-tip='+_tips+']').stop(true, true).fadeIn().siblings().hide();
                        _yJsMain.addClass('blur');
                    }else{
                        _yJsMain.removeClass('blur');
